@@ -1,4 +1,4 @@
-# OhjelmistotekniikkaHarjoitustyö
+# OhjelmistotekniikkaHarjoitustyö.
 **Viikko1**
 (https://github.com/Erikvu/ot-harkkartyo/tree/master/laskarit/viikko1)
 
