@@ -1,0 +1,133 @@
+$ git log --stat | cat
+commit bbb59c3990490111e48c78f39250d9b347377d64
+Author: Erik_Vuori <erik.vuori@helsinki.fi>
+Date:   Tue Mar 22 20:11:15 2022 +0200
+
+    filejä
+
+ tiedostoja/file2.txt                 | 0
+ tiedostoja/{file1.txt => file22.txt} | 0
+ tiedostoja/file3.txt                 | 1 +
+ 3 files changed, 1 insertion(+)
+
+commit 3fe0270dfd14f27cfd9a8c874e3ba671a400f4d9
+Author: Erik_Vuori <erik.vuori@helsinki.fi>
+Date:   Tue Mar 22 20:07:52 2022 +0200
+
+    tiedostoja
+
+ tiedostoja/file1.txt | 0
+ tiedostoja/file2.txt | 0
+ tiedostoja/file3.txt | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 20c3ec73bae71c9b608421da4203bd388db8fdfd
+Author: Erik_Vuori <erik.vuori@helsinki.fi>
+Date:   Tue Mar 22 20:05:12 2022 +0200
+
+    git add -p testi
+
+ eka.txt    | 5 ++---
+ kolmas.txt | 1 +
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit dbfc14890f8e749f390f18d80695d07f70725d58
+Author: Erik_Vuori <erik.vuori@helsinki.fi>
+Date:   Tue Mar 22 20:03:47 2022 +0200
+
+    uudelleen nimeäminen
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 9493d1fc8e2901526b41ce4a62005ad60a3ba838
+Author: Erik_Vuori <erik.vuori@helsinki.fi>
+Date:   Tue Mar 22 20:02:55 2022 +0200
+
+    testi
+
+ a.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ea63754a9f15b05702a298109fd79e0d89fcc09c
+Author: Erik_Vuori <erik.vuori@helsinki.fi>
+Date:   Tue Mar 22 20:02:36 2022 +0200
+
+    a
+
+ a.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 4e1a47df2d385845cc8fcff742aff661a962ed45
+Author: Erik_Vuori <erik.vuori@helsinki.fi>
+Date:   Tue Mar 22 20:00:07 2022 +0200
+
+    poisot
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit de35347936c7d4be44aba6115cfd37f65992c660
+Author: Erik_Vuori <erik.vuori@helsinki.fi>
+Date:   Tue Mar 22 19:57:39 2022 +0200
+
+    koira
+
+ tiedosto.txt | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+commit 1e5e4ec554fcd90cfa5a9f7f8ee4c757e67eb144
+Author: Erik_Vuori <erik.vuori@helsinki.fi>
+Date:   Tue Mar 22 19:57:19 2022 +0200
+
+    z
+
+ tiedosto.txt | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+commit 55758423491a36325596874e7505111f40037c40
+Author: Erik_Vuori <erik.vuori@helsinki.fi>
+Date:   Tue Mar 22 19:53:40 2022 +0200
+
+    stuffi kansio
+
+ stuff/Rutto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c6976d03314f1bee5f25edf9a9587ad26d3ce353
+Author: Erik_Vuori <erik.vuori@helsinki.fi>
+Date:   Tue Mar 22 19:52:37 2022 +0200
+
+    muutoksia txt fileihi
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 43d9137638614b3042f853dacd98b4872d45a71b
+Author: Erik_Vuori <erik.vuori@helsinki.fi>
+Date:   Tue Mar 22 19:52:00 2022 +0200
+
+    kolmas tiedosto
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ee0fa430a4636e52a491b4c0462036863cec235a
+Author: Erik_Vuori <erik.vuori@helsinki.fi>
+Date:   Tue Mar 22 19:50:42 2022 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 89197b8f39dccb72b1c3748eb9b27531b0854143
+Author: Erik_Vuori <erik.vuori@helsinki.fi>
+Date:   Tue Mar 22 19:48:41 2022 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
