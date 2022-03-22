@@ -1,4 +1,5 @@
 # Harjoitustyö
-[**Viikko1**](https://github.com/Erikvu/ot-harkkartyo/tree/master/laskarit/viikko1)
+**Viikko1**
+(https://github.com/Erikvu/ot-harkkartyo/tree/master/laskarit/viikko1)
 
-[**Laskarit**](https://github.com/Erikvu/ot-harkkartyo/tree/master/laskarit)
+[**Gitlog**](https://github.com/Erikvu/ot-harkkartyo/blob/master/laskarit/viikko1/gitlog.txt)
