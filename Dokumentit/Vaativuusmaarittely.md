@@ -19,13 +19,13 @@ Sovelluksen tarkoitus on tehdä yksinkertainen ylhäältäpäin kuvattu rpg-peli
 
 
 ### taistelu
-*Vuoropohjainen taistelu
- -Pelaajan vuoro
-  -pelaaja voi valita käyttääkö parantavaa juomaa vai hyökkääkö
-  -vihollinen menettää elämää tai pelaaja paranee
-  -vihollisen vuoro
-    -vihollinen arpoo kahdesta eri vahvuisesta hyökkäyksesta
-    -pelaaja menettää elämää
+-Vuoropohjainen taistelu
+    -Pelaajan vuoro
+        -pelaaja voi valita käyttääkö parantavaa juomaa vai hyökkääkö
+        -vihollinen menettää elämää tai pelaaja paranee
+    -vihollisen vuoro
+        -vihollinen arpoo kahdesta eri vahvuisesta hyökkäyksesta
+        -pelaaja menettää elämää
 
 -vihollisen elämäpisteet vähenee nollaan: Taistelu päättyy ja vihollinen katoaa
 -vihollisen elämäpisteet vähenee nollaan: pelipäättyy ja tallennuskatoaa
