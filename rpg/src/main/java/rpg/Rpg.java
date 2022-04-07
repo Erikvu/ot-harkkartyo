@@ -5,6 +5,9 @@
 
 package rpg;
 
+import rpg.ui.MainMenu;
+import rpg.ui.Ui;
+
 /**
  *
  * @author erikv
@@ -12,5 +15,8 @@ package rpg;
 public class Rpg {
 
     public static void main(String[] args) {
+      GameManager  gameManager = new GameManager();
+        gameManager.startThread();
+
     }
 }
