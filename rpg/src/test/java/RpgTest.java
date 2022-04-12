@@ -34,6 +34,7 @@ public class RpgTest {
     assertEquals(8,  player.health);
 }
     
+    
     @BeforeClass
     public static void setUpClass() {
     }
