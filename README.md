@@ -8,6 +8,9 @@
 
 ## Projektin suoritus
 kansiosta: ~/Documents/Ot-harkkatyo/rpg
+
 Komento: mvn compile exec:java -Dexec.mainClass=rpg.Rpg
+
 testi: mvn test
+
 testikattavuus: mvn jacoco:report
