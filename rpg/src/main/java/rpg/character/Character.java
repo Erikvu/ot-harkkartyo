@@ -11,6 +11,7 @@ import java.util.Random;
  * @author erikv
  */
 public class Character {
+
     protected String name;
     public int health;
     protected int maxHealth;
@@ -19,10 +20,8 @@ public class Character {
     protected int attack;
     public boolean alive;
     public int[][] position;
-    
-    
-     public Character(String name, int health, int maxHealth, int energy, int maxEnergy, int attack, int[][] position)
-    {
+
+    public Character(String name, int health, int maxHealth, int energy, int maxEnergy, int attack, int[][] position) {
         this.name = name;
         this.health = health;
         this.maxHealth = maxHealth;
@@ -32,30 +31,30 @@ public class Character {
         this.alive = true;
         this.position = position;
     }
-     
 
-     public int attack(){
-         Random rand = new Random();
-         return rand.nextInt(attack+1);
-     }
-     
-     public void takeDamage(int damage){
-         health -= damage;
-         if(health >=0){
-         alive = false;
-     }
-}
-     public void heal(){
-         if(energy>2){
-             energy-=2;
-             health += 5;
-            if (health >= maxHealth){
+    public int attack() {
+        Random rand = new Random();
+        return rand.nextInt(attack + 1);
+    }
+
+    public void takeDamage(int damage) {
+        health -= damage;
+        if (health >= 0) {
+            alive = false;
+        }
+    }
+
+    public void heal() {
+        if (energy > 2) {
+            energy -= 2;
+            health += 5;
+            if (health >= maxHealth) {
                 health = maxHealth;
-         }
-     }
-     }
-     
-     public int getHealth(){
-         return health;
-     }
+            }
+        }
+    }
+
+    public int getHealth() {
+        return health;
+    }
 }

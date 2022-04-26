@@ -12,8 +12,13 @@ import rpg.character.Player;
  * @author erikv
  */
 public class Map {
+
     private int height;
     private int width;
     private Player player;
     private ArrayList<Character> characters;
+    public Tile[][] tileMap = new Tile[30][20];
+
+    public Map() {
+    }
 }

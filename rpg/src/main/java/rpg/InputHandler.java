@@ -11,21 +11,52 @@ import java.awt.event.KeyListener;
  *
  * @author erikv
  */
-public class InputHandler implements KeyListener{
+public class InputHandler implements KeyListener {
+
+    public boolean up, left, right, down, space;
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int keyPressed = e.getKeyCode();
+        if (keyPressed == KeyEvent.VK_UP) {
+            up = true;
+        }
+        if (keyPressed == KeyEvent.VK_DOWN) {
+            down = true;
+        }
+        if (keyPressed == KeyEvent.VK_LEFT) {
+            left = true;
+        }
+        if (keyPressed == KeyEvent.VK_RIGHT) {
+            right = true;
+        }
+        if (keyPressed == KeyEvent.VK_SPACE) {
+            space = true;
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int keyPressed = e.getKeyCode();
+        if (keyPressed == KeyEvent.VK_UP) {
+            up = false;
+        }
+        if (keyPressed == KeyEvent.VK_DOWN) {
+            down = false;
+        }
+        if (keyPressed == KeyEvent.VK_LEFT) {
+            left = false;
+        }
+        if (keyPressed == KeyEvent.VK_RIGHT) {
+            right = false;
+        }
+        if (keyPressed == KeyEvent.VK_SPACE) {
+            space = false;
+        }
     }
-    
+
 }

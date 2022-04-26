@@ -7,23 +7,25 @@ package rpg.battle;
 import rpg.character.Character;
 import rpg.character.Player;
 
-
 /**
  *
  * @author erikv
  */
 public class PlayerTurn {
+
     private Character enemy;
     private Player player;
-    
-    public PlayerTurn(Player playerData, Character enemyData){
-        this.player =playerData;
+
+    public PlayerTurn(Player playerData, Character enemyData) {
+        this.player = playerData;
         this.enemy = enemyData;
     }
-    public void attack(int attack){
+
+    public void attack(int attack) {
         enemy.takeDamage(attack);
     }
-    public void heal(){
+
+    public void heal() {
         player.heal();
     }
 }

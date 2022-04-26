@@ -9,5 +9,5 @@ package rpg.map;
  * @author erikv
  */
 public class Tile {
-    
+
 }
