@@ -11,5 +11,6 @@
 | 19.4. | 2  | Menun ja gameloopin tekoa|
 | 19.4. | 1  | Menun tekoa|
 | 26.4. | 1  | checkstyle käyttöön|
-Kokonaisaika: 18h
+| 2.5. | 4  | kartan tekemistä|
+Kokonaisaika: 22h
 
