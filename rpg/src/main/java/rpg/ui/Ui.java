@@ -5,6 +5,10 @@
 package rpg.ui;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import rpg.GameManager;
 import javax.swing.JFrame;
@@ -21,7 +25,7 @@ public class Ui extends JFrame {
     public boolean menuOn;
     public boolean mapOn;
     public boolean battleOn;
-    public GameMap game = new GameMap();
+    public GameMap game;
 
     public Ui(GameManager gameManager) {
         menuOn = true;
@@ -43,7 +47,11 @@ public class Ui extends JFrame {
 
     public void startGame() {
         this.remove(mainMenu);
-        this.add(game);
+        try {
+            this.add(new GameMap(getClass().getClassLoader().getResource("resources/FirstMap.json")));
+        } catch (IOException ex) {
+        } catch (URISyntaxException ex) {
+        }
         this.revalidate();
         this.repaint();
     }

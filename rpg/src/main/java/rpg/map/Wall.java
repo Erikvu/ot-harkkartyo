@@ -8,6 +8,11 @@ package rpg.map;
  *
  * @author erikv
  */
-public class Tile{
-    
+public class Wall extends Tile{
+
+    public boolean passable = false;
+
+    public Wall() {
+
+    }
 }

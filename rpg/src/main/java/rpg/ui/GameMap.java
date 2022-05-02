@@ -6,8 +6,12 @@ package rpg.ui;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import javax.swing.JPanel;
 import rpg.map.Map;
+import rpg.map.PathWay;
 import rpg.map.Tile;
 
 /**
@@ -16,11 +20,12 @@ import rpg.map.Tile;
  */
 public class GameMap extends JPanel {
 
-    private Map map = new Map();
+    private Map map;
 
-    public GameMap() {
+    public GameMap(URL url) throws IOException, URISyntaxException {
         setOpaque(true);
         setBackground(Color.BLACK);
+        map = new Map(url);
     }
 
     @Override
@@ -31,9 +36,11 @@ public class GameMap extends JPanel {
     }
 
     public void drawGame(Graphics g) {
-        //  for(Tile tile:map.tileMap){
-        //     
-        //  } 
+        for(int i = 0; i<20; i++){
+           for(int k = 0; k<30; k++){
+            
+        } 
+        }
     }
 
     public void loadMapLayout() {

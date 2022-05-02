@@ -8,6 +8,12 @@ package rpg.map;
  *
  * @author erikv
  */
-public class Tile{
-    
+public class PathWay extends Tile{
+
+    public boolean passable = true;
+
+    public PathWay() {
+
+    }
+
 }

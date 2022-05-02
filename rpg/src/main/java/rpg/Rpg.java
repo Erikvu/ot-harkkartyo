@@ -4,6 +4,9 @@
  */
 package rpg;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import rpg.map.Map;
 import rpg.ui.MainMenu;
 import rpg.ui.Ui;
 
@@ -13,7 +16,7 @@ import rpg.ui.Ui;
  */
 public class Rpg {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         GameManager gameManager = new GameManager();
         gameManager.startThread();
 
