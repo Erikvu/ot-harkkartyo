@@ -1,5 +1,6 @@
 # ChangeLog
-5-4-2022: added player, character, playerturn, enemyturn, map, tile and tile classes
-7-4-2022/8-4-2022: changed player logic and added classes for ui.
-26-4-2022: made progress in ui and added checkstyle for project
-2-5-2022: made map backend ready
+-week2: added player, character, playerturn, enemyturn, map, tile and tile classes
+-week3:changed player logic and added classes for ui.
+-week4:made progress in ui and added checkstyle for project
+-week5:made some map changes, CHECKSTYLE otettu käyttöön
+-week6:

@@ -12,5 +12,6 @@
 | 19.4. | 1  | Menun tekoa|
 | 26.4. | 1  | checkstyle käyttöön|
 | 2.5. | 4  | kartan tekemistä|
-Kokonaisaika: 22h
+| 3.5. | 5  | Ui juttuja|
+Kokonaisaika: 27h
 

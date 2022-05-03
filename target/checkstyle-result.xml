@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="C:\Users\erikv\Documents\Ot-harkkatyo\src\main\java\rpg\battle\EnemyTurn.java">
+</file>
+<file name="C:\Users\erikv\Documents\Ot-harkkatyo\src\main\java\rpg\battle\PlayerTurn.java">
+</file>
+<file name="C:\Users\erikv\Documents\Ot-harkkatyo\src\main\java\rpg\character\Character.java">
+</file>
+<file name="C:\Users\erikv\Documents\Ot-harkkatyo\src\main\java\rpg\character\Player.java">
+</file>
+<file name="C:\Users\erikv\Documents\Ot-harkkatyo\src\main\java\rpg\GameManager.java">
+<error line="61" column="5" severity="error" message="Method length is 23 lines (max allowed is 20)." source="com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck"/>
+<error line="85" column="5" severity="error" message="Method length is 21 lines (max allowed is 20)." source="com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck"/>
+<error line="102" column="35" severity="error" message="Must have at least one statement." source="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck"/>
+</file>
+<file name="C:\Users\erikv\Documents\Ot-harkkatyo\src\main\java\rpg\InputHandler.java">
+</file>
+<file name="C:\Users\erikv\Documents\Ot-harkkatyo\src\main\java\rpg\map\Door.java">
+</file>
+<file name="C:\Users\erikv\Documents\Ot-harkkatyo\src\main\java\rpg\map\Map.java">
+<error line="42" column="14" severity="error" message="&apos;(&apos; is followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck"/>
+</file>
+<file name="C:\Users\erikv\Documents\Ot-harkkatyo\src\main\java\rpg\map\PathWay.java">
+<error line="11" column="34" severity="error" message="&apos;{&apos; is not preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+</file>
+<file name="C:\Users\erikv\Documents\Ot-harkkatyo\src\main\java\rpg\map\Tile.java">
+<error line="11" column="18" severity="error" message="&apos;{&apos; is not preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+</file>
+<file name="C:\Users\erikv\Documents\Ot-harkkatyo\src\main\java\rpg\map\Wall.java">
+<error line="11" column="31" severity="error" message="&apos;{&apos; is not preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+</file>
+<file name="C:\Users\erikv\Documents\Ot-harkkatyo\src\main\java\rpg\Rpg.java">
+</file>
+<file name="C:\Users\erikv\Documents\Ot-harkkatyo\src\main\java\rpg\ui\GameMap.java">
+</file>
+<file name="C:\Users\erikv\Documents\Ot-harkkatyo\src\main\java\rpg\ui\MainMenu.java">
+</file>
+<file name="C:\Users\erikv\Documents\Ot-harkkatyo\src\main\java\rpg\ui\Ui.java">
+</file>
+</checkstyle>
