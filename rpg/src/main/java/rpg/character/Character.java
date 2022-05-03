@@ -19,9 +19,10 @@ public class Character {
     protected int maxEnergy;
     protected int attack;
     public boolean alive;
-    public int[][] position;
+    public int posX;
+    public int posY;
 
-    public Character(String name, int health, int maxHealth, int energy, int maxEnergy, int attack, int[][] position) {
+    public Character(String name, int health, int maxHealth, int energy, int maxEnergy, int attack, int posX, int posY) {
         this.name = name;
         this.health = health;
         this.maxHealth = maxHealth;
@@ -29,7 +30,8 @@ public class Character {
         this.maxEnergy = maxEnergy;
         this.attack = attack;
         this.alive = true;
-        this.position = position;
+        this.posX = posX;
+        this.posY = posY;
     }
 
     public int attack() {

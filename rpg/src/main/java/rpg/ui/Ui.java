@@ -39,16 +39,18 @@ public class Ui extends JFrame {
     }
 
     private void init() {
-        this.setSize(1200, 800);
+        this.setSize(1215, 835);
         setResizable(false);
         this.add(mainMenu);
         this.setVisible(true);
     }
 
-    public void startGame() {
+    public void startGame(String path) {
+        mapOn = true;
         this.remove(mainMenu);
         try {
-            this.add(new GameMap(getClass().getClassLoader().getResource("resources/FirstMap.json")));
+            this.game = new GameMap(getClass().getClassLoader().getResource(path));
+            this.add(game);
         } catch (IOException ex) {
         } catch (URISyntaxException ex) {
         }

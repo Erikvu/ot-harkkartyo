@@ -4,6 +4,7 @@
  */
 package rpg;
 
+import rpg.character.Player;
 import rpg.map.Map;
 import rpg.ui.MainMenu;
 import rpg.ui.Ui;
@@ -20,6 +21,7 @@ public class GameManager implements Runnable {
     private double timeInterval = 1000000000 / 10.0;
     private long lastLoopTime = System.nanoTime();
     private Ui ui;
+    private Player player = new Player("Asd", 5, 5, 5, 5, 5, 40, 40);
     // private Map map = new Map();
 
     public GameManager() {
@@ -52,7 +54,7 @@ public class GameManager implements Runnable {
         if (ui.menuOn) {
             menuMove();
         } else if (ui.mapOn) {
-
+            mapMove();
         }
     }
 
@@ -67,17 +69,39 @@ public class GameManager implements Runnable {
         if (ui.inputHander.space) {
             if (arrowIndex == 0) {
                 ui.menuOn = false;
-                ui.startGame();
+                ui.startGame("resources/FirstMap.json");
             }
             if (arrowIndex == 1) {
                 ui.menuOn = false;
-                ui.startGame();
+                ui.startGame("resources/FirstMap.json");
             }
             if (arrowIndex == 2) {
                 System.exit(0);
             }
         }
         ui.mainMenu.updateUI();
+    }
+
+    public void mapMove() {
+        if (ui.inputHander.down) {
+            player.move(0, 40);
+            ui.game.updatePlayerPosition(player.posY, player.posX);
+        }
+        if (ui.inputHander.up) {
+            player.move(0, -40);
+            ui.game.updatePlayerPosition(player.posY, player.posX);
+        }
+        if (ui.inputHander.left) {
+            player.move(-40, 0);
+            ui.game.updatePlayerPosition(player.posY, player.posX);
+        }
+        if (ui.inputHander.right) {
+            player.move(40, 0);
+            ui.game.updatePlayerPosition(player.posY, player.posX);
+        }
+        if (ui.inputHander.space) {
+        }
+        ui.game.updateUI();
     }
 
     public void graphics() {

@@ -10,11 +10,12 @@ package rpg.character;
  */
 public class Player extends Character {
 
-    public Player(String name, int health, int maxHealth, int energy, int maxEnergy, int attack, int[][] position) {
-        super(name, health, maxHealth, energy, maxEnergy, attack, position);
+    public Player(String name, int health, int maxHealth, int energy, int maxEnergy, int attack, int posX, int posY) {
+        super(name, health, maxHealth, energy, maxEnergy, attack, posX, posY);
     }
 
-    public void move(int[][] newPos) {
-        position = newPos;
+    public void move(int posX, int posY) {
+        this.posY += posY;
+        this.posX += posX;
     }
 }

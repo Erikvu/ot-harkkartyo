@@ -11,6 +11,7 @@ package rpg.map;
 public class PathWay extends Tile{
 
     public boolean passable = true;
+    public boolean hasPlayer = false;
 
     public PathWay() {
 

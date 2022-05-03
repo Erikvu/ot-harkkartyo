@@ -36,25 +36,25 @@ public class Map {
     }
 
     public Tile[][] makeMap() throws IOException, URISyntaxException {
-        int columnIndex=0;
+        int columnIndex = 0;
         String line = " ";
-         String[] temp;
+        String[] temp;
         try ( BufferedReader fileReader = new BufferedReader(new FileReader(Paths.get(mapPath.toURI()).toFile()))) {
             while ((line = fileReader.readLine()) != null) {
-                for(int i =0; i<20; i++){
-                tileMap[i][columnIndex] = charToTile(line.charAt(i));
-            }
-             columnIndex++;
+                for (int i = 0; i < 30; i++) {
+                    tileMap[i][columnIndex] = charToTile(line.charAt(i));
+                }
+                columnIndex++;
             }
         }
-        System.out.println("aaaaaa");
         return tileMap;
     }
+
     private Tile charToTile(char character) {
         Tile tile;
         switch (character) {
             case 'd':
-                tile = new Door();;
+                tile = new Door();
                 break;
             case 'w':
                 tile = new PathWay();
@@ -66,4 +66,3 @@ public class Map {
         return tile;
     }
 }
-

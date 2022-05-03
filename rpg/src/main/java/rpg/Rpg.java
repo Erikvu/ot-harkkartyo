@@ -16,9 +16,8 @@ import rpg.ui.Ui;
  */
 public class Rpg {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         GameManager gameManager = new GameManager();
         gameManager.startThread();
-
     }
 }

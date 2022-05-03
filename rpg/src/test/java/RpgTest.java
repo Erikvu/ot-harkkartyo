@@ -16,37 +16,37 @@ import rpg.character.Player;
  * @author erikv
  */
 public class RpgTest {
-    
-     Player player = new Player("Rip", 10, 10, 10, 10, 10, new int[2][2]);
-     
+
+    Player player = new Player("Rip", 10, 10, 10, 10, 10, 40, 40);
+
     public RpgTest() {
     }
-    
+
     @Test
     public void damageTakenProperly() {
         player.takeDamage(5);
-    assertEquals(5,  player.health);
-}
-        @Test
+        assertEquals(5, player.health);
+    }
+
+    @Test
     public void healedProperly() {
         player.takeDamage(7);
         player.heal();
-    assertEquals(8,  player.health);
-}
-    
-    
+        assertEquals(8, player.health);
+    }
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
