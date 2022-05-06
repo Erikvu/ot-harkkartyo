@@ -59,10 +59,14 @@ public class Map {
             case 'w':
                 tile = new PathWay();
                 break;
+             case 'e':
+                tile = new EnemyTile();
+                break;
             default:
                 tile = new Wall();
                 break;
         }
         return tile;
     }
+    
 }

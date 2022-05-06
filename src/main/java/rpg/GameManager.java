@@ -4,8 +4,11 @@
  */
 package rpg;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import rpg.character.Player;
 import rpg.map.Map;
+import rpg.ui.GameMap;
 import rpg.ui.MainMenu;
 import rpg.ui.Ui;
 
@@ -22,7 +25,9 @@ public class GameManager implements Runnable {
     private long lastLoopTime = System.nanoTime();
     private Ui ui;
     private Player player = new Player("Asd", 5, 5, 5, 5, 5, 40, 40);
-    // private Map map = new Map();
+    public GameMap game;
+    String firstMap = "resources/FirstMap.json";
+    GameMap gameMap;
 
     public GameManager() {
         ui = new Ui(this);
@@ -68,12 +73,20 @@ public class GameManager implements Runnable {
         }
         if (ui.inputHander.space) {
             if (arrowIndex == 0) {
-                ui.menuOn = false;
-                ui.startGame("resources/FirstMap.json");
+                try {
+                    ui.menuOn = false;
+                    gameMap = new GameMap(getClass().getClassLoader().getResource(firstMap));
+                    ui.startGame(gameMap);
+                } catch (IOException | URISyntaxException ex) {
+                }
             }
             if (arrowIndex == 1) {
-                ui.menuOn = false;
-                ui.startGame("resources/FirstMap.json");
+                try {
+                    ui.menuOn = false;
+                    gameMap = new GameMap(getClass().getClassLoader().getResource(firstMap));
+                    ui.startGame(gameMap);
+                } catch (IOException | URISyntaxException ex) {
+                }
             }
             if (arrowIndex == 2) {
                 System.exit(0);
@@ -84,20 +97,33 @@ public class GameManager implements Runnable {
 
     public void mapMove() {
         if (ui.inputHander.down) {
+            if(playerCanMove(player.posY+40, player.posX)){
             player.move(0, 40);
             ui.game.updatePlayerPosition(player.posY, player.posX);
+            }
         }
         if (ui.inputHander.up) {
+            if(playerCanMove(player.posY-40, player.posX)){
             player.move(0, -40);
+            playerCanMove(player.posY, player.posX);
             ui.game.updatePlayerPosition(player.posY, player.posX);
+        }
         }
         if (ui.inputHander.left) {
+            if(playerCanMove(player.posY, player.posX-40)){
+        
             player.move(-40, 0);
+            playerCanMove(player.posY, player.posX);
             ui.game.updatePlayerPosition(player.posY, player.posX);
         }
+    }
         if (ui.inputHander.right) {
+            if(playerCanMove(player.posY, player.posX+40)){
+        
             player.move(40, 0);
+            playerCanMove(player.posY, player.posX);
             ui.game.updatePlayerPosition(player.posY, player.posX);
+        }
         }
         if (ui.inputHander.space) {
         }
@@ -105,5 +131,9 @@ public class GameManager implements Runnable {
     }
 
     public void graphics() {
+    }
+
+    public boolean playerCanMove(int posX, int posY) {
+            return gameMap.passableTileInPoss(posX, posY);
     }
 }

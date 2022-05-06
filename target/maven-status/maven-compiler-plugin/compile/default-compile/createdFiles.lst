@@ -1,5 +1,6 @@
 rpg\ui\GameMap.class
 rpg\Rpg.class
+rpg\map\EnemyTile.class
 rpg\map\Map.class
 rpg\map\Tile.class
 rpg\GameManager.class

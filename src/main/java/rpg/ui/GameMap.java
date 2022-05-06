@@ -12,6 +12,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import rpg.map.EnemyTile;
 import rpg.map.Map;
 import rpg.map.PathWay;
 import rpg.map.Tile;
@@ -28,6 +29,7 @@ public class GameMap extends JPanel {
     private BufferedImage wall;
     private BufferedImage pathWay;
     private BufferedImage player;
+    private BufferedImage enemy;
     private int playerPosx;
     private int playerPosy;
 
@@ -47,6 +49,7 @@ public class GameMap extends JPanel {
             wall = ImageIO.read((getClass().getClassLoader().getResource("resources/wall.png")));
             pathWay = ImageIO.read((getClass().getClassLoader().getResource("resources/floor.png")));
             player = ImageIO.read((getClass().getClassLoader().getResource("resources/hero.png")));
+            enemy = ImageIO.read((getClass().getClassLoader().getResource("resources/enemy.png")));
         } catch (IOException ex) {
             System.out.println(ex);
         }
@@ -66,9 +69,13 @@ public class GameMap extends JPanel {
             posX = 0;
             for (int k = 0; k < 30; k++) {
 
-                if (map.tileMap[k][i] instanceof PathWay) {
+                if (map.tileMap[k][i] instanceof EnemyTile) {
                     g.drawImage(pathWay, posX, posY, this);
-                } else if (map.tileMap[k][i] instanceof Wall) {
+                    g.drawImage(enemy, posX, posY,this);
+                }else if (map.tileMap[k][i] instanceof PathWay) {
+                     g.drawImage(pathWay, posX, posY,this);
+                } 
+                else if (map.tileMap[k][i] instanceof Wall) {
                     g.drawImage(wall, posX, posY, this);
                 } else {
                     g.drawImage(door, posX, posY, this);
@@ -79,9 +86,14 @@ public class GameMap extends JPanel {
         }
         g.drawImage(player, playerPosx, playerPosy, this);
     }
+    
 
     public void updatePlayerPosition(int posY, int posX) {
         playerPosx = posX;
         playerPosy = posY;
+    }
+    
+    public boolean passableTileInPoss(int posX, int posY){
+        return map.tileMap[posY/40][posX/40].isPassable();
     }
 }

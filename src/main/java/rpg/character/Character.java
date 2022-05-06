@@ -59,4 +59,12 @@ public class Character {
     public int getHealth() {
         return health;
     }
+
+    public int xPos() {
+        return posX;
+    }
+
+    public int yPos() {
+        return posY;
+    }
 }

@@ -9,5 +9,9 @@ package rpg.map;
  * @author erikv
  */
 public class Tile{
-    
+    public boolean passable ; 
+  
+    public boolean isPassable(){
+        return this.passable;
+    }
 }

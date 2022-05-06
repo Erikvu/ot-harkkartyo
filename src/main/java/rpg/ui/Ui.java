@@ -45,15 +45,11 @@ public class Ui extends JFrame {
         this.setVisible(true);
     }
 
-    public void startGame(String path) {
+    public void startGame(GameMap map) {
         mapOn = true;
         this.remove(mainMenu);
-        try {
-            this.game = new GameMap(getClass().getClassLoader().getResource(path));
+            this.game = map;
             this.add(game);
-        } catch (IOException ex) {
-        } catch (URISyntaxException ex) {
-        }
         this.revalidate();
         this.repaint();
     }

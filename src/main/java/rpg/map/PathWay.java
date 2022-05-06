@@ -16,5 +16,8 @@ public class PathWay extends Tile{
     public PathWay() {
 
     }
-
+    @Override
+    public boolean isPassable(){
+        return this.passable;
+    }
 }

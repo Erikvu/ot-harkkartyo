@@ -8,16 +8,22 @@ package rpg.map;
  *
  * @author erikv
  */
-public class Wall extends Tile{
+public class EnemyTile extends PathWay {
 
     public boolean passable = false;
+    public boolean hasPlayer = false;
 
-    public Wall() {
+    public EnemyTile() {
 
     }
-    
+
     @Override
-        public boolean isPassable(){
+    public boolean isPassable() {
         return this.passable;
     }
+
+    public void enemyDefeated() {
+        passable = true;
+    }
+
 }

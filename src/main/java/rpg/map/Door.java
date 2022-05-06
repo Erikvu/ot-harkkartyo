@@ -16,4 +16,9 @@ public class Door extends Tile {
     public Door() {
 
     }
+    
+    @Override
+        public boolean isPassable(){
+        return this.passable;
+    }
 }
