@@ -96,4 +96,7 @@ public class GameMap extends JPanel {
     public boolean passableTileInPoss(int posX, int posY){
         return map.tileMap[posY/40][posX/40].isPassable();
     }
+    public boolean enemyTile(int posX, int posY){
+        return map.tileMap[posY/40][posX/40].hasEnemy();
+    }
 }

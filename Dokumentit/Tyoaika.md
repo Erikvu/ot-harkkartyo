@@ -13,5 +13,6 @@
 | 26.4. | 1  | checkstyle käyttöön|
 | 2.5. | 4  | kartan tekemistä|
 | 3.5. | 5  | Ui juttuja|
-Kokonaisaika: 27h
+| 7.5. | 3  | Unit collionsion|
+Kokonaisaika: 30h
 

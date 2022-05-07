@@ -10,8 +10,12 @@ package rpg.map;
  */
 public class Tile{
     public boolean passable ; 
+    public boolean hasEnemy;
   
     public boolean isPassable(){
         return this.passable;
+    }
+        public boolean hasEnemy(){
+        return this.hasEnemy;
     }
 }

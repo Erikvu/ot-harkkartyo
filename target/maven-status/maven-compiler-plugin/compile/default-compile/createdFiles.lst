@@ -14,3 +14,4 @@ rpg\map\Wall.class
 rpg\character\Character.class
 rpg\ui\Ui.class
 rpg\map\PathWay.class
+rpg\ui\battleScreen.class

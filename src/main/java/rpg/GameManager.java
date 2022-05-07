@@ -97,33 +97,45 @@ public class GameManager implements Runnable {
 
     public void mapMove() {
         if (ui.inputHander.down) {
-            if(playerCanMove(player.posY+40, player.posX)){
-            player.move(0, 40);
-            ui.game.updatePlayerPosition(player.posY, player.posX);
+            if (playerCanMove(player.posY + 40, player.posX)) {
+                player.move(0, 40);
+                ui.game.updatePlayerPosition(player.posY, player.posX);
+            }
+            if (hasEnemy(player.posY + 40, player.posX)) {
+                    ui.startBattle();
             }
         }
         if (ui.inputHander.up) {
-            if(playerCanMove(player.posY-40, player.posX)){
-            player.move(0, -40);
-            playerCanMove(player.posY, player.posX);
-            ui.game.updatePlayerPosition(player.posY, player.posX);
-        }
+            if (playerCanMove(player.posY - 40, player.posX)) {
+                player.move(0, -40);
+                playerCanMove(player.posY, player.posX);
+                ui.game.updatePlayerPosition(player.posY, player.posX);
+            }
+            if (hasEnemy(player.posY - 40, player.posX)) {
+                    ui.startBattle();
+            }
         }
         if (ui.inputHander.left) {
-            if(playerCanMove(player.posY, player.posX-40)){
-        
-            player.move(-40, 0);
-            playerCanMove(player.posY, player.posX);
-            ui.game.updatePlayerPosition(player.posY, player.posX);
+            if (playerCanMove(player.posY, player.posX - 40)) {
+
+                player.move(-40, 0);
+                playerCanMove(player.posY, player.posX);
+                ui.game.updatePlayerPosition(player.posY, player.posX);
+            }
+            if (hasEnemy(player.posY, player.posX - 40)) {
+                    ui.startBattle();
+            }
         }
-    }
         if (ui.inputHander.right) {
-            if(playerCanMove(player.posY, player.posX+40)){
-        
-            player.move(40, 0);
-            playerCanMove(player.posY, player.posX);
-            ui.game.updatePlayerPosition(player.posY, player.posX);
-        }
+            if (playerCanMove(player.posY, player.posX + 40)) {
+
+                player.move(40, 0);
+                playerCanMove(player.posY, player.posX);
+                ui.game.updatePlayerPosition(player.posY, player.posX);
+            }
+            if (hasEnemy(player.posY, player.posX + 40)) {
+                        ui.startBattle();
+            }
         }
         if (ui.inputHander.space) {
         }
@@ -134,6 +146,10 @@ public class GameManager implements Runnable {
     }
 
     public boolean playerCanMove(int posX, int posY) {
-            return gameMap.passableTileInPoss(posX, posY);
+        return gameMap.passableTileInPoss(posX, posY);
+    }
+
+    private boolean hasEnemy(int posX, int posY) {
+        return gameMap.enemyTile(posX, posY);
     }
 }

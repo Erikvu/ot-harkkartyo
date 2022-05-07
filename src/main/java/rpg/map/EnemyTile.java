@@ -11,7 +11,7 @@ package rpg.map;
 public class EnemyTile extends PathWay {
 
     public boolean passable = false;
-    public boolean hasPlayer = false;
+    public boolean enemy = true;
 
     public EnemyTile() {
 
@@ -21,9 +21,14 @@ public class EnemyTile extends PathWay {
     public boolean isPassable() {
         return this.passable;
     }
+    @Override
+        public boolean hasEnemy() {
+        return this.enemy;
+    }
 
     public void enemyDefeated() {
         passable = true;
+        enemy = false;
     }
 
 }
