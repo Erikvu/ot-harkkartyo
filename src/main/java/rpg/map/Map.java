@@ -60,7 +60,10 @@ public class Map {
                 tile = new PathWay();
                 break;
              case 'e':
-                tile = new EnemyTile();
+                 EnemyTile enemyTile = new EnemyTile();
+                 enemyTile.hasEnemy = true;
+                tile = enemyTile;
+                
                 break;
             default:
                 tile = new Wall();

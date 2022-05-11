@@ -24,7 +24,7 @@ import rpg.map.Wall;
  */
 public class GameMap extends JPanel {
 
-    private Map map;
+    public Map map;
     private BufferedImage door;
     private BufferedImage wall;
     private BufferedImage pathWay;
@@ -71,7 +71,9 @@ public class GameMap extends JPanel {
 
                 if (map.tileMap[k][i] instanceof EnemyTile) {
                     g.drawImage(pathWay, posX, posY, this);
-                    g.drawImage(enemy, posX, posY,this);
+                    if(map.tileMap[k][i].hasEnemy()){
+                      g.drawImage(enemy, posX, posY,this);
+                    }
                 }else if (map.tileMap[k][i] instanceof PathWay) {
                      g.drawImage(pathWay, posX, posY,this);
                 } 

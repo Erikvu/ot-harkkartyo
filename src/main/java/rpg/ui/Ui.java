@@ -48,6 +48,7 @@ public class Ui extends JFrame {
 
     public void startGame(GameMap map) {
         mapOn = true;
+        battleOn =false;
         this.remove(mainMenu);
         this.game = map;
         this.add(game);
@@ -57,6 +58,7 @@ public class Ui extends JFrame {
 
     public void startBattle() {
         mapOn = false;
+        battleOn =true;
         this.battle = new battleScreen();
         this.remove(game);
         this.add(battle);

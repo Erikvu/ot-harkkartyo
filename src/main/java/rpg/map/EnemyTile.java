@@ -26,9 +26,10 @@ public class EnemyTile extends PathWay {
         return this.enemy;
     }
 
+    @Override
     public void enemyDefeated() {
-        passable = true;
-        enemy = false;
+        this.passable = true;
+        this.enemy = false;
     }
 
 }

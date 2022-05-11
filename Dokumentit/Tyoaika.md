@@ -14,5 +14,6 @@
 | 2.5. | 4  | kartan tekemistä|
 | 3.5. | 5  | Ui juttuja|
 | 7.5. | 3  | Unit collionsion|
-Kokonaisaika: 30h
+| 8.5. | 2  | added BattleScreen|
+Kokonaisaika: 32h
 

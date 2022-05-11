@@ -18,4 +18,7 @@ public class Tile{
         public boolean hasEnemy(){
         return this.hasEnemy;
     }
+
+    public void enemyDefeated() { 
+    }
 }

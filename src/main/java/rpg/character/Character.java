@@ -17,7 +17,7 @@ public class Character {
     protected int maxHealth;
     public int energy;
     protected int maxEnergy;
-    protected int attack;
+    public int attack;
     public boolean alive;
     public int posX;
     public int posY;
@@ -39,21 +39,20 @@ public class Character {
         return rand.nextInt(attack + 1);
     }
 
-    public void takeDamage(int damage) {
+    public int takeDamage(int damage) {
         health -= damage;
-        if (health >= 0) {
+        if (health <= 0) {
             alive = false;
         }
+       return health;
     }
 
-    public void heal() {
-        if (energy > 2) {
-            energy -= 2;
-            health += 5;
+    public int heal() {
+            health += 20;
             if (health >= maxHealth) {
                 health = maxHealth;
             }
-        }
+        return health;
     }
 
     public int getHealth() {

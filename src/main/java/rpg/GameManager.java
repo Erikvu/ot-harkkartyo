@@ -6,11 +6,16 @@ package rpg;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import rpg.character.Enemy;
 import rpg.character.Player;
+import rpg.map.EnemyTile;
 import rpg.map.Map;
 import rpg.ui.GameMap;
 import rpg.ui.MainMenu;
 import rpg.ui.Ui;
+import rpg.ui.battleScreen;
 
 /**
  *
@@ -24,10 +29,12 @@ public class GameManager implements Runnable {
     private double timeInterval = 1000000000 / 10.0;
     private long lastLoopTime = System.nanoTime();
     private Ui ui;
-    private Player player = new Player("Asd", 5, 5, 5, 5, 5, 40, 40);
+    private Player player = new Player("Asd", 100, 100, 5, 5, 20, 40, 40);
+    private Enemy battleEnemy = new Enemy();
     public GameMap game;
     String firstMap = "resources/FirstMap.json";
     GameMap gameMap;
+    boolean enemyTurn = false;
 
     public GameManager() {
         ui = new Ui(this);
@@ -47,7 +54,11 @@ public class GameManager implements Runnable {
             gameTime += (currentTime - lastLoopTime) / timeInterval;
             lastLoopTime = currentTime;
             while (gameTime >= 1) {
-                update();
+                try {
+                    update();
+                } catch (IOException ex) {
+                    Logger.getLogger(GameManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 gameTime--;
             }
 
@@ -55,11 +66,21 @@ public class GameManager implements Runnable {
 
     }
 
-    public void update() {
+    public void update() throws IOException {
         if (ui.menuOn) {
             menuMove();
         } else if (ui.mapOn) {
             mapMove();
+        }else if(ui.battleOn){
+            if(!battleEnemy.alive){
+                ui.startGame(gameMap);
+            }else{
+            if(!enemyTurn)
+            battleMove();
+            else{
+                battleEnemyAction();
+            }
+            }
         }
     }
 
@@ -103,6 +124,9 @@ public class GameManager implements Runnable {
             }
             if (hasEnemy(player.posY + 40, player.posX)) {
                     ui.startBattle();
+                    ui.game.map.tileMap[player.posX/40][(player.posY+40)/40].enemyDefeated();
+                    battleEnemy = new Enemy();
+                    
             }
         }
         if (ui.inputHander.up) {
@@ -113,6 +137,8 @@ public class GameManager implements Runnable {
             }
             if (hasEnemy(player.posY - 40, player.posX)) {
                     ui.startBattle();
+                     ui.game.map.tileMap[player.posX/40][(player.posY-40)/40].enemyDefeated();
+                     battleEnemy = new Enemy();
             }
         }
         if (ui.inputHander.left) {
@@ -124,6 +150,8 @@ public class GameManager implements Runnable {
             }
             if (hasEnemy(player.posY, player.posX - 40)) {
                     ui.startBattle();
+                     ui.game.map.tileMap[(player.posX-40)/40][player.posY/40].enemyDefeated();
+                     battleEnemy = new Enemy();
             }
         }
         if (ui.inputHander.right) {
@@ -135,13 +163,50 @@ public class GameManager implements Runnable {
             }
             if (hasEnemy(player.posY, player.posX + 40)) {
                         ui.startBattle();
+                         ui.game.map.tileMap[(player.posX+40)/40][player.posY/40].enemyDefeated();
+                         battleEnemy = new Enemy();
             }
         }
         if (ui.inputHander.space) {
         }
         ui.game.updateUI();
     }
+    public void battleMove() throws IOException{
+        int arrowIndex = ui.battle.arrowPos;
+         if (ui.inputHander.down) {
+             ui.battle.setArrowPos(arrowIndex + 1);
+        }
+        if (ui.inputHander.up) {
+            ui.battle.setArrowPos(arrowIndex - 1);
+            }
+            if (ui.inputHander.space) {
+                 if (arrowIndex == 0) {
+                     ui.battle.changeEnemyHealth(battleEnemy.takeDamage(player.attack));
+                     enemyTurn = true;
+                }
+                 if (arrowIndex == 1) {
+                     enemyTurn = true;
+                      ui.battle.changeHeroHealth(player.heal());
+            }
+        }
 
+          
+        ui.battle.updateUI();
+    }
+    
+    public void battleEnemyAction() throws IOException{
+        int rand = (int) (Math.random() * 20);
+        if(rand>15){
+            ui.battle.changeEnemyHealth(battleEnemy.heal());
+            ui.battle.showEnemyAction(0);
+        }else{
+            ui.battle.changeHeroHealth(player.takeDamage(10));
+            ui.battle.showEnemyAction(1);
+        }
+         enemyTurn = false;
+        ui.battle.updateUI();
+    }
+    
     public void graphics() {
     }
 
