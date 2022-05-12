@@ -5,10 +5,12 @@
 package rpg.ui;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import rpg.GameManager;
 import javax.swing.JFrame;
@@ -39,6 +41,7 @@ public class Ui extends JFrame {
 
     }
 
+
     private void init() {
         this.setSize(1215, 835);
         setResizable(false);
@@ -57,6 +60,7 @@ public class Ui extends JFrame {
     }
 
     public void startBattle() {
+        System.out.println("asd");
         mapOn = false;
         battleOn =true;
         this.battle = new battleScreen();

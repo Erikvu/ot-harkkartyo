@@ -10,15 +10,19 @@ package rpg.map;
  */
 public class Door extends Tile {
 
-    public boolean passable = true;
+    public boolean isDoor = true;
     public boolean hasPlayer = false;
-
+    public boolean isPassable = true;
     public Door() {
 
     }
     
     @Override
-        public boolean isPassable(){
-        return this.passable;
+        public boolean isDoor(){
+        return this.isDoor;
     }
+    @Override
+        public boolean isPassable(){
+        return this.isPassable;
+}
 }

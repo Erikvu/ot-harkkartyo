@@ -11,12 +11,16 @@ package rpg.map;
 public class Tile{
     public boolean passable ; 
     public boolean hasEnemy;
+    public boolean isDoor;
   
     public boolean isPassable(){
         return this.passable;
     }
         public boolean hasEnemy(){
         return this.hasEnemy;
+    }
+                public boolean isDoor(){
+        return this.isDoor;
     }
 
     public void enemyDefeated() { 

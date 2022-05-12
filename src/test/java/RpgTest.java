@@ -24,15 +24,10 @@ public class RpgTest {
 
     @Test
     public void damageTakenProperly() {
-        player.takeDamage(5);
-        assertEquals(5, player.health);
     }
 
     @Test
     public void healedProperly() {
-        player.takeDamage(7);
-        player.heal();
-        assertEquals(8, player.health);
     }
 
     @BeforeClass

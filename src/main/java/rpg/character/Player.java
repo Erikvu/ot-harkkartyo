@@ -18,4 +18,16 @@ public class Player extends Character {
         this.posY += posY;
         this.posX += posX;
     }
+    public void setPlayerPos(int posX, int posY){
+        this.posY = posY;
+        this.posX = posX;
+    }
+    @Override
+        public int takeDamage(int damage) {
+        health -= damage;
+        if (health <= 0) {
+            alive = false;
+        }
+       return health;
+    }
 }

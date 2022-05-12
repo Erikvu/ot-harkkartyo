@@ -1,3 +1,4 @@
+rpg\character\Enemy.class
 rpg\ui\GameMap.class
 rpg\Rpg.class
 rpg\map\EnemyTile.class
@@ -9,6 +10,7 @@ rpg\character\Player.class
 rpg\map\Door.class
 rpg\battle\EnemyTurn.class
 rpg\InputHandler.class
+rpg\ui\gameOver.class
 rpg\battle\PlayerTurn.class
 rpg\map\Wall.class
 rpg\character\Character.class

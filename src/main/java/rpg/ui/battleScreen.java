@@ -9,9 +9,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-import rpg.map.EnemyTile;
-import rpg.map.PathWay;
-import rpg.map.Wall;
 
 /**
  *
@@ -71,6 +68,14 @@ public class battleScreen extends JPanel {
         if (pos >= 0 && pos < 2) {
             arrowPos = pos;
         }
+    }
+    public void gameOver() throws IOException{
+        battleScreen = ImageIO.read((getClass().getClassLoader().getResource("resources/GameOver.png")));
+        arrow1 = ImageIO.read((getClass().getClassLoader().getResource("resources/placeHolder.png")));
+            arrow = ImageIO.read((getClass().getClassLoader().getResource("resources/placeHolder.png")));
+            heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/placeHolder.png")));
+            enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/placeHolder.png")));
+            action = ImageIO.read((getClass().getClassLoader().getResource("resources/placeHolder.png")));
     }
     
     public void changeHeroHealth(int newHealth) throws IOException{
