@@ -10,12 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import rpg.character.Enemy;
 import rpg.character.Player;
-import rpg.map.EnemyTile;
-import rpg.map.Map;
 import rpg.ui.GameMap;
-import rpg.ui.MainMenu;
 import rpg.ui.Ui;
-import rpg.ui.battleScreen;
 
 /**
  *
@@ -26,17 +22,18 @@ public class GameManager implements Runnable {
     Thread gameLoop;
     private long currentTime;
     private double gameTime;
-    private double timeInterval = 1000000000 / 10.0;
+    private final double timeInterval = 1000000000 / 10.0;
     private long lastLoopTime = System.nanoTime();
-    private Ui ui;
-    private Player player = new Player("Asd", 100, 100, 5, 5, 20, 40, 40);
+    private final Ui ui;
+    private final Player player = new Player("Asd", 100, 100, 5, 5, 20, 40, 40);
     private Enemy battleEnemy = new Enemy();
     public GameMap game;
     String firstMap = "resources/FirstMap.json";
     String secondMap = "resources/SecondMap.json";
     GameMap gameMap;
     boolean enemyTurn = false;
-boolean stopUpdate = false;
+    boolean stopUpdate = false;
+
     public GameManager() {
         ui = new Ui(this);
 
@@ -57,9 +54,7 @@ boolean stopUpdate = false;
             while (gameTime >= 1) {
                 try {
                     update();
-                } catch (IOException ex) {
-                    Logger.getLogger(GameManager.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (URISyntaxException ex) {
+                } catch (IOException | URISyntaxException ex) {
                     Logger.getLogger(GameManager.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 gameTime--;
@@ -70,7 +65,7 @@ boolean stopUpdate = false;
     }
 
     public void update() throws IOException, URISyntaxException {
-        if(!player.alive){
+        if (!player.alive) {
             ui.battle.gameOver();
             ui.battle.updateUI();
             return;
@@ -127,71 +122,48 @@ boolean stopUpdate = false;
     public void mapMove() throws IOException, URISyntaxException {
         if (ui.inputHander.down) {
             if (playerCanMove(player.posY + 40, player.posX)) {
-                if (isDoor(player.posY +40, player.posX)) {
-                    gameMap = new GameMap(getClass().getClassLoader().getResource(secondMap));
-                    player.setPlayerPos(0, 40);
-                    ui.startGame(gameMap);
+                if (isDoor(player.posY + 40, player.posX)) {
+                    playerMoveToDoor();
                 }
-                player.move(0, 40);
-                ui.game.updatePlayerPosition(player.posY, player.posX);
+                playerMove(0, 40);
             }
             if (hasEnemy(player.posY + 40, player.posX)) {
-                ui.startBattle();
-                ui.game.map.tileMap[player.posX / 40][(player.posY + 40) / 40].enemyDefeated();
-                battleEnemy = new Enemy();
+                playerMoveToEnemy(player.posX / 40, (player.posY + 40) / 40);
 
             }
         }
         if (ui.inputHander.up) {
             if (playerCanMove(player.posY - 40, player.posX)) {
-                if (isDoor(player.posY -40, player.posX)) {
-                    gameMap = new GameMap(getClass().getClassLoader().getResource(secondMap));
-                    player.setPlayerPos(0, 40);
-                    ui.startGame(gameMap);
+                if (isDoor(player.posY - 40, player.posX)) {
+                    playerMoveToDoor();
                 }
-                player.move(0, -40);
-                playerCanMove(player.posY, player.posX);
-                ui.game.updatePlayerPosition(player.posY, player.posX);
+                playerMove(0, -40);
             }
             if (hasEnemy(player.posY - 40, player.posX)) {
-                ui.startBattle();
-                ui.game.map.tileMap[player.posX / 40][(player.posY - 40) / 40].enemyDefeated();
-                battleEnemy = new Enemy();
+                playerMoveToEnemy(player.posX / 40, (player.posY - 40) / 40);
             }
         }
         if (ui.inputHander.left) {
             if (playerCanMove(player.posY, player.posX - 40)) {
                 if (isDoor(player.posY, player.posX - 40)) {
-                    gameMap = new GameMap(getClass().getClassLoader().getResource(secondMap));
-                    player.setPlayerPos(0, 40);
-                    ui.startGame(gameMap);
+                    playerMoveToDoor();
                 }
-                player.move(-40, 0);
-                playerCanMove(player.posY, player.posX);
-                ui.game.updatePlayerPosition(player.posY, player.posX);
+                playerMove(-40, 0);
             }
             if (hasEnemy(player.posY, player.posX - 40)) {
-                ui.startBattle();
-                ui.game.map.tileMap[(player.posX - 40) / 40][player.posY / 40].enemyDefeated();
-                battleEnemy = new Enemy();
+                playerMoveToEnemy((player.posX - 40) / 40, player.posY / 40);
             }
         }
         if (ui.inputHander.right) {
             if (playerCanMove(player.posY, player.posX + 40)) {
                 if (isDoor(player.posY, player.posX + 40)) {
-                    gameMap = new GameMap(getClass().getClassLoader().getResource(secondMap));
-                    player.setPlayerPos(0, 40);
-                    ui.startGame(gameMap);
+                    playerMoveToDoor();
                 }
 
-                player.move(40, 0);
-                playerCanMove(player.posY, player.posX);
-                ui.game.updatePlayerPosition(player.posY, player.posX);
+                playerMove(40, 0);
             }
             if (hasEnemy(player.posY, player.posX + 40)) {
-                ui.startBattle();
-                ui.game.map.tileMap[(player.posX + 40) / 40][player.posY / 40].enemyDefeated();
-                battleEnemy = new Enemy();
+                playerMoveToEnemy((player.posX + 40) / 40, player.posY / 40);
             }
         }
         if (ui.inputHander.space) {
@@ -247,5 +219,22 @@ boolean stopUpdate = false;
 
     private boolean isDoor(int posX, int posY) {
         return gameMap.isDoor(posX, posY);
+    }
+
+    private void playerMove(int x, int y) {
+        player.move(x, y);
+        ui.game.updatePlayerPosition(player.posY, player.posX);
+    }
+
+    private void playerMoveToDoor() throws IOException, URISyntaxException {
+        gameMap = new GameMap(getClass().getClassLoader().getResource(secondMap));
+        player.setPlayerPos(0, 40);
+        ui.startGame(gameMap);
+    }
+
+    private void playerMoveToEnemy(int x, int y) {
+        ui.startBattle();
+        ui.game.map.tileMap[x][y].enemyDefeated();
+        battleEnemy = new Enemy();
     }
 }

@@ -4,12 +4,6 @@
  */
 package rpg;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import rpg.map.Map;
-import rpg.ui.MainMenu;
-import rpg.ui.Ui;
-
 /**
  *
  * @author erikv

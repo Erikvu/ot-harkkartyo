@@ -5,15 +5,11 @@
 package rpg.map;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
-import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import rpg.character.Player;
@@ -24,10 +20,6 @@ import rpg.character.Player;
  */
 public class Map {
 
-    private int height;
-    private int width;
-    private Player player;
-    private ArrayList<Character> characters;
     public Tile[][] tileMap = new Tile[30][20];
     public URL mapPath;
 
