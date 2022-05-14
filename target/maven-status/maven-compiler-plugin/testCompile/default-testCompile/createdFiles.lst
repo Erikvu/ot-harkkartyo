@@ -1,1 +1,5 @@
-RpgTest.class
+rpg\character\CharacterTest.class
+rpg\ui\UiTest.class
+rpg\map\MapTest.class
+rpg\GameManagerTest.class
+rpg\RpgTest.class

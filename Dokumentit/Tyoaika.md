@@ -15,5 +15,7 @@
 | 3.5. | 5  | Ui juttuja|
 | 7.5. | 3  | Unit collionsion|
 | 8.5. | 2  | added BattleScreen|
-Kokonaisaika: 32h
+| 8.5. | 5  | sekalaista koodailua|
+| 8.5. | 3  | refactoring|
+Kokonaisaika: 4h
 

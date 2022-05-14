@@ -4,6 +4,8 @@
  */
 package rpg.map;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,38 +18,41 @@ import static org.junit.Assert.*;
  * @author erikv
  */
 public class MapTest {
-    
+    Map map;
     public MapTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
-    public void setUp() {
+    public void setUp() throws IOException, URISyntaxException {
+       map = new Map(getClass().getClassLoader().getResource("resources/FirstMap.json"));
     }
     
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of makeMap method, of class Map.
      */
     @Test
-    public void testMakeMap() throws Exception {
-        System.out.println("makeMap");
-        Map instance = null;
-        Tile[][] expResult = null;
-        Tile[][] result = instance.makeMap();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void returnDoortTile() throws Exception {
+        
+        assertEquals(map.charToTile('d') instanceof Door, true);
     }
-    
+        @Test
+    public void returnEnemytTile() throws Exception {
+        
+        assertEquals(map.charToTile('e') instanceof EnemyTile, true);
+    }
+        @Test
+    public void returnWallTile() throws Exception {
+        
+        assertEquals(map.charToTile('x') instanceof Wall, true);
+    }
+            @Test
+    public void returnPathWayTile() throws Exception {
+        
+        assertEquals(map.charToTile('w') instanceof PathWay, true);
+    }
+            @Test
+        public void makeTileMap() throws Exception {
+        map.makeMap();
+        assertEquals(map.tileMap[0][0] instanceof Wall, true);
+    }
 }

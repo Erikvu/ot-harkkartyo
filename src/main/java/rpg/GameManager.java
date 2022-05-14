@@ -24,8 +24,8 @@ public class GameManager implements Runnable {
     private double gameTime;
     private final double timeInterval = 1000000000 / 10.0;
     private long lastLoopTime = System.nanoTime();
-    private final Ui ui;
-    private final Player player = new Player("Asd", 100, 100, 5, 5, 20, 40, 40);
+    Ui ui;
+    Player player = new Player("Asd", 100, 100, 5, 5, 20, 40, 40);
     private Enemy battleEnemy = new Enemy();
     public GameMap game;
     String firstMap = "resources/FirstMap.json";
@@ -226,13 +226,14 @@ public class GameManager implements Runnable {
         ui.game.updatePlayerPosition(player.posY, player.posX);
     }
 
-    private void playerMoveToDoor() throws IOException, URISyntaxException {
+     void playerMoveToDoor() throws IOException, URISyntaxException {
         gameMap = new GameMap(getClass().getClassLoader().getResource(secondMap));
         player.setPlayerPos(0, 40);
         ui.startGame(gameMap);
     }
 
-    private void playerMoveToEnemy(int x, int y) {
+     void playerMoveToEnemy(int x, int y) {
+        System.out.println(x + " " +y);
         ui.startBattle();
         ui.game.map.tileMap[x][y].enemyDefeated();
         battleEnemy = new Enemy();

@@ -42,7 +42,7 @@ public class Map {
         return tileMap;
     }
 
-    private Tile charToTile(char character) {
+     Tile charToTile(char character) {
         Tile tile;
         switch (character) {
             case 'd':

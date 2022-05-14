@@ -16,18 +16,18 @@ import javax.swing.JPanel;
  */
 public class battleScreen extends JPanel {
 
-    private BufferedImage battleScreen;
-    private BufferedImage heroHealtBar;
-    private BufferedImage enemyHealtBar;
-        private BufferedImage arrow1;
-        private BufferedImage action;
-    private BufferedImage arrow;
+    public BufferedImage battleScreen;
+    public BufferedImage heroHealtBar;
+    public BufferedImage enemyHealtBar;
+    public BufferedImage arrow1;
+    public BufferedImage action;
+    public BufferedImage arrow;
     public int[] arrowLocation = new int[]{585, 685};
     public int arrowPos;
     public int enemyHealt = 100;
-    
-    public battleScreen(){
-          loadItems();
+
+    public battleScreen() {
+        loadItems();
     }
 
     private void loadItems() {
@@ -39,11 +39,11 @@ public class battleScreen extends JPanel {
             enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt100.png")));
             action = ImageIO.read((getClass().getClassLoader().getResource("resources/placeholder.png")));
         } catch (IOException ex) {
-            System.out.println(ex);
         }
 
     }
-  @Override
+
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawGame(g);
@@ -56,112 +56,143 @@ public class battleScreen extends JPanel {
         g.drawImage(battleScreen, 0, 0, this);
         g.drawImage(action, 500, 150, this);
     }
-        private void drawArrows(Graphics g) {
+
+    private void drawArrows(Graphics g) {
         g.drawImage(arrow, 450, arrowLocation[arrowPos], this);
         g.drawImage(arrow1, 700, arrowLocation[arrowPos], this);
     }
-        private void drawHealthBar(Graphics g) {
+
+    private void drawHealthBar(Graphics g) {
         g.drawImage(heroHealtBar, 170, 150, this);
         g.drawImage(enemyHealtBar, 980, 150, this);
     }
+
     public void setArrowPos(int pos) {
         if (pos >= 0 && pos < 2) {
             arrowPos = pos;
         }
     }
-    public void gameOver() throws IOException{
+
+    public void gameOver() throws IOException {
         battleScreen = ImageIO.read((getClass().getClassLoader().getResource("resources/GameOver.png")));
         arrow1 = ImageIO.read((getClass().getClassLoader().getResource("resources/placeHolder.png")));
-            arrow = ImageIO.read((getClass().getClassLoader().getResource("resources/placeHolder.png")));
-            heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/placeHolder.png")));
-            enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/placeHolder.png")));
-            action = ImageIO.read((getClass().getClassLoader().getResource("resources/placeHolder.png")));
+        arrow = ImageIO.read((getClass().getClassLoader().getResource("resources/placeHolder.png")));
+        heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/placeHolder.png")));
+        enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/placeHolder.png")));
+        action = ImageIO.read((getClass().getClassLoader().getResource("resources/placeHolder.png")));
     }
-    
-    public void changeHeroHealth(int newHealth) throws IOException{
+
+    public String changeHeroHealth(int newHealth) throws IOException {
+        String imageSource = "";
         switch (newHealth) {
             case 100:
                 heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt100.png")));
+                imageSource = "resources/healt100.png";
                 break;
             case 90:
                 heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt90.png")));
+                imageSource = "resources/healt90.png";
                 break;
-                 case 80:
-                     heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt80.png")));
+            case 80:
+                heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt80.png")));
+                imageSource = "resources/healt80.png";
                 break;
-                 case 70:
-                     heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt70.png")));
+            case 70:
+                heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt70.png")));
+                imageSource = "resources/healt70.png";
                 break;
-                 case 60:
-                     heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt60.png")));
+            case 60:
+                heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt60.png")));
+                imageSource = "resources/healt60.png";
                 break;
-                 case 50:
-                     heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt50.png")));
+            case 50:
+                heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt50.png")));
+                imageSource = "resources/healt50.png";
                 break;
-                 case 40:
-                     heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt40.png")));
+            case 40:
+                heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt40.png")));
+                imageSource = "resources/healt40.png";
                 break;
-                 case 30:
-                     heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt30.png")));
+            case 30:
+                heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt30.png")));
+                imageSource = "resources/healt30.png";
                 break;
-                 case 20:
-                     heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt20.png")));
+            case 20:
+                heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt20.png")));
+                imageSource = "resources/healt20.png";
                 break;
-                 case 10:
-                     heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt10.png")));
+            case 10:
+                heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt10.png")));
+                imageSource = "resources/healt10.png";
                 break;
-                 case 0:
-                     heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt00.png")));
+            case 0:
+                heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt00.png")));
+                imageSource = "resources/healt00.png";
                 break;
             default:
                 break;
         }
+        return imageSource;
     }
-        public void changeEnemyHealth(int newHealth) throws IOException{
+
+    public String changeEnemyHealth(int newHealth) throws IOException {
+        String imageSource = "";
         switch (newHealth) {
             case 100:
                 enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt100.png")));
+                imageSource = "resources/healt100.png";
                 break;
             case 90:
                 enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt90.png")));
+                imageSource = "resources/healt90.png";
                 break;
-                 case 80:
-                     enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt80.png")));
+            case 80:
+                enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt80.png")));
+                imageSource = "resources/healt80.png";
                 break;
-                 case 70:
-                     enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt70.png")));
+            case 70:
+                enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt70.png")));
+                imageSource = "resources/healt70.png";
                 break;
-                 case 60:
-                     enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt60.png")));
+            case 60:
+                enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt60.png")));
+                imageSource = "resources/healt60.png";
                 break;
-                 case 50:
-                     enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt50.png")));
+            case 50:
+                enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt50.png")));
+                imageSource = "resources/healt50.png";
                 break;
-                 case 40:
-                     enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt40.png")));
+            case 40:
+                enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt40.png")));
+                imageSource = "resources/healt40.png";
                 break;
-                 case 30:
-                     enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt30.png")));
+            case 30:
+                enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt30.png")));
+                imageSource = "resources/healt30.png";
                 break;
-                 case 20:
-                     enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt20.png")));
+            case 20:
+                enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt20.png")));
+                imageSource = "resources/healt20.png";
                 break;
-                 case 10:
-                     enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt10.png")));
+            case 10:
+                enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt10.png")));
+                imageSource = "resources/healt10.png";
                 break;
-                 case 0:
-                     enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt00.png")));
+            case 0:
+                enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt00.png")));
+                imageSource = "resources/healt00.png";
                 break;
             default:
                 break;
         }
+        return imageSource;
     }
-    public void showEnemyAction(int enemyAction) throws IOException{
-        if(enemyAction ==1){
+
+    public void showEnemyAction(int enemyAction) throws IOException {
+        if (enemyAction == 1) {
             action = ImageIO.read((getClass().getClassLoader().getResource("resources/attack.png")));
+        } else {
+            action = ImageIO.read((getClass().getClassLoader().getResource("resources/heal.png")));
         }
-        else{
-                action = ImageIO.read((getClass().getClassLoader().getResource("resources/heal.png")));
-                }
     }
 }

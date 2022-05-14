@@ -34,11 +34,6 @@ public class Character {
         this.posY = posY;
     }
 
-    public int attack() {
-        Random rand = new Random();
-        return rand.nextInt(attack + 1);
-    }
-
     public int takeDamage(int damage) {
         health -= damage;
         if (health <= 0) {
@@ -55,9 +50,6 @@ public class Character {
         return health;
     }
 
-    public int getHealth() {
-        return health;
-    }
 
     public int xPos() {
         return posX;
