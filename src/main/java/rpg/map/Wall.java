@@ -8,16 +8,16 @@ package rpg.map;
  *
  * @author erikv
  */
-public class Wall extends Tile{
+public class Wall extends Tile {
 
     public boolean passable = false;
 
     public Wall() {
 
     }
-    
+
     @Override
-        public boolean isPassable(){
+    public boolean isPassable() {
         return this.passable;
     }
 }

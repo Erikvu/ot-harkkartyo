@@ -9,10 +9,9 @@ package rpg.character;
  * @author erikv
  */
 public class Enemy extends Character {
-    
-        public Enemy() {
+
+    public Enemy() {
         super("asfasf", 100, 100, 5, 5, 10, 12, 12);
     }
-        
-    
+
 }

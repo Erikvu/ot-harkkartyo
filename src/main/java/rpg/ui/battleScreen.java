@@ -26,10 +26,16 @@ public class battleScreen extends JPanel {
     public int arrowPos;
     public int enemyHealt = 100;
 
+    /**
+     * Constructor
+     */
     public battleScreen() {
         loadItems();
     }
 
+    /**
+     * Loads images to generate new battlescreen
+     */
     private void loadItems() {
         try {
             battleScreen = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/battleScreen.png")));
@@ -52,27 +58,52 @@ public class battleScreen extends JPanel {
         g.dispose();
     }
 
+    /**
+     * Draws battlescreen
+     *
+     * @param g
+     */
     public void drawGame(Graphics g) {
         g.drawImage(battleScreen, 0, 0, this);
         g.drawImage(action, 500, 150, this);
     }
 
+    /**
+     * Draws arrow to show player action position
+     *
+     * @param g
+     */
     private void drawArrows(Graphics g) {
         g.drawImage(arrow, 450, arrowLocation[arrowPos], this);
         g.drawImage(arrow1, 700, arrowLocation[arrowPos], this);
     }
 
+    /**
+     * Draws enemys and players healthbar
+     *
+     * @param g
+     */
     private void drawHealthBar(Graphics g) {
         g.drawImage(heroHealtBar, 170, 150, this);
         g.drawImage(enemyHealtBar, 980, 150, this);
     }
 
+    /**
+     * sets player action arrow position
+     *
+     * @param pos new arrow position
+     */
     public void setArrowPos(int pos) {
         if (pos >= 0 && pos < 2) {
             arrowPos = pos;
         }
     }
 
+    /**
+     * Shows gameover screen and hides other components
+     *
+     * @throws java.io.IOException
+     */
     public void gameOver() throws IOException {
         battleScreen = ImageIO.read((getClass().getClassLoader().getResource("resources/GameOver.png")));
         arrow1 = ImageIO.read((getClass().getClassLoader().getResource("resources/placeHolder.png")));
@@ -82,6 +113,13 @@ public class battleScreen extends JPanel {
         action = ImageIO.read((getClass().getClassLoader().getResource("resources/placeHolder.png")));
     }
 
+    /**
+     * Changes players health to new health
+     *
+     * @param newHealth new health
+     * @return returns new health
+     * @throws java.io.IOException
+     */
     public String changeHeroHealth(int newHealth) throws IOException {
         String imageSource = "";
         switch (newHealth) {
@@ -135,6 +173,13 @@ public class battleScreen extends JPanel {
         return imageSource;
     }
 
+    /**
+     * Changes enemys health to new health
+     *
+     * @param newHealth new health
+     * @return returns new health
+     * @throws java.io.IOException
+     */
     public String changeEnemyHealth(int newHealth) throws IOException {
         String imageSource = "";
         switch (newHealth) {
@@ -188,6 +233,12 @@ public class battleScreen extends JPanel {
         return imageSource;
     }
 
+    /**
+     * Shows enemys action in combat
+     *
+     * @param enemyAction
+     * @throws java.io.IOException
+     */
     public void showEnemyAction(int enemyAction) throws IOException {
         if (enemyAction == 1) {
             action = ImageIO.read((getClass().getClassLoader().getResource("resources/EnemyAttack.png")));

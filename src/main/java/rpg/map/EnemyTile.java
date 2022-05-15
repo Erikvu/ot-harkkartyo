@@ -21,8 +21,9 @@ public class EnemyTile extends PathWay {
     public boolean isPassable() {
         return this.passable;
     }
+
     @Override
-        public boolean hasEnemy() {
+    public boolean hasEnemy() {
         return this.enemy;
     }
 

@@ -11,7 +11,6 @@ import rpg.InputHandler;
 
 public class Ui extends JFrame {
 
-    public GameManager gameManager;
     public JTextArea messageText;
     public InputHandler inputHander = new InputHandler();
     public MainMenu mainMenu = new MainMenu();
@@ -21,18 +20,23 @@ public class Ui extends JFrame {
     public GameMap game;
     public battleScreen battle;
 
-    public Ui(GameManager gameManager) {
+    /**
+     * constructor
+     *
+     */
+    public Ui() {
         menuOn = true;
         mapOn = false;
         battleOn = false;
-        this.gameManager = gameManager;
         this.addKeyListener(inputHander);
         this.setFocusable(true);
         init();
 
     }
 
-
+    /**
+     * Makes ui and starts with mainMenu
+     */
     private void init() {
         this.setSize(1215, 835);
         setResizable(false);
@@ -40,9 +44,14 @@ public class Ui extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Starts game and shows a map
+     *
+     * @param map map to be drawn
+     */
     public void startGame(GameMap map) {
         mapOn = true;
-        battleOn =false;
+        battleOn = false;
         this.remove(mainMenu);
         this.game = map;
         this.add(game);
@@ -50,9 +59,12 @@ public class Ui extends JFrame {
         this.repaint();
     }
 
+    /**
+     * Starts battle and shows battlescreen
+     */
     public void startBattle() {
         mapOn = false;
-        battleOn =true;
+        battleOn = true;
         this.battle = new battleScreen();
         this.remove(game);
         this.add(battle);

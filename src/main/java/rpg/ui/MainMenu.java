@@ -7,12 +7,9 @@ package rpg.ui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import rpg.GameManager;
 
 /**
  *
@@ -28,6 +25,9 @@ public class MainMenu extends JPanel {
     public int[] arrowLocation = new int[]{305, 405, 505};
     public int arrowPos;
 
+    /**
+     * Constructor that loads images to generate menuscreen
+     */
     public MainMenu() {
         arrowPos = 0;
         try {
@@ -50,6 +50,9 @@ public class MainMenu extends JPanel {
         g.dispose();
     }
 
+    /**
+     * Drawns menu
+     */
     public void drawMainMenu(Graphics g) {
         g.drawImage(continueButton, 500, 300, this);
         g.drawImage(newGame, 500, 400, this);
@@ -57,11 +60,19 @@ public class MainMenu extends JPanel {
         drawArrows(g);
     }
 
+    /**
+     * Drawns selection arrows
+     */
     private void drawArrows(Graphics g) {
         g.drawImage(arrow, 450, arrowLocation[arrowPos], this);
         g.drawImage(arrow1, 700, arrowLocation[arrowPos], this);
     }
 
+    /**
+     * updates arrowposition
+     *
+     * @param pos new arrow position
+     */
     public void setArrowPos(int pos) {
         if (pos >= 0 && pos < 3) {
             arrowPos = pos;

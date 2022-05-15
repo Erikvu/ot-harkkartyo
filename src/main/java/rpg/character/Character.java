@@ -4,8 +4,6 @@
  */
 package rpg.character;
 
-import java.util.Random;
-
 /**
  *
  * @author erikv
@@ -39,17 +37,16 @@ public class Character {
         if (health <= 0) {
             alive = false;
         }
-       return health;
-    }
-
-    public int heal() {
-            health += 20;
-            if (health >= maxHealth) {
-                health = maxHealth;
-            }
         return health;
     }
 
+    public int heal() {
+        health += 20;
+        if (health >= maxHealth) {
+            health = maxHealth;
+        }
+        return health;
+    }
 
     public int xPos() {
         return posX;

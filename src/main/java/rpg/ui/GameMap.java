@@ -32,6 +32,13 @@ public class GameMap extends JPanel {
     private int playerPosx;
     private int playerPosy;
 
+    /**
+     * Constructor
+     *
+     * @param url gets path to txt file that makes the map
+     * @throws java.io.IOException
+     * @throws java.net.URISyntaxException
+     */
     public GameMap(String url) throws IOException, URISyntaxException {
         loadItems();
         setOpaque(true);
@@ -42,6 +49,9 @@ public class GameMap extends JPanel {
         playerPosy = 40;
     }
 
+    /**
+     * Loads images to generate new map
+     */
     public void loadItems() {
         try {
             door = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/door.png")));
@@ -61,6 +71,11 @@ public class GameMap extends JPanel {
         g.dispose();
     }
 
+    /**
+     * Draws gamemap based on the tilemap
+     *
+     * @param g Graphics parameter
+     */
     public void drawGame(Graphics g) {
         int posX;
         int posY = 0;
@@ -70,13 +85,12 @@ public class GameMap extends JPanel {
 
                 if (map.tileMap[k][i] instanceof EnemyTile) {
                     g.drawImage(pathWay, posX, posY, this);
-                    if(map.tileMap[k][i].hasEnemy()){
-                      g.drawImage(enemy, posX, posY,this);
+                    if (map.tileMap[k][i].hasEnemy()) {
+                        g.drawImage(enemy, posX, posY, this);
                     }
-                }else if (map.tileMap[k][i] instanceof PathWay) {
-                     g.drawImage(pathWay, posX, posY,this);
-                } 
-                else if (map.tileMap[k][i] instanceof Wall) {
+                } else if (map.tileMap[k][i] instanceof PathWay) {
+                    g.drawImage(pathWay, posX, posY, this);
+                } else if (map.tileMap[k][i] instanceof Wall) {
                     g.drawImage(wall, posX, posY, this);
                 } else {
                     g.drawImage(door, posX, posY, this);
@@ -87,20 +101,48 @@ public class GameMap extends JPanel {
         }
         g.drawImage(player, playerPosx, playerPosy, this);
     }
-    
 
+    /**
+     * Updates player position on map
+     *
+     * @param posY position in y axle
+     * @param posX position in x axle
+     */
     public void updatePlayerPosition(int posY, int posX) {
         playerPosx = posX;
         playerPosy = posY;
     }
-    
-    public boolean passableTileInPoss(int posX, int posY){
-        return map.tileMap[posY/40][posX/40].isPassable();
+
+    /**
+     * checks if the tile is passable
+     *
+     * @param posY position in y axle
+     * @param posX position in x axle
+     * @return returns true if tile is passable
+     */
+    public boolean passableTileInPoss(int posX, int posY) {
+        return map.tileMap[posY / 40][posX / 40].isPassable();
     }
-    public boolean enemyTile(int posX, int posY){
-        return map.tileMap[posY/40][posX/40].hasEnemy();
+
+    /**
+     * checks if the tile has enemy
+     *
+     * @param posY position in y axle
+     * @param posX position in x axle
+     * @return returns true if tile has enemy
+     */
+    public boolean enemyTile(int posX, int posY) {
+        return map.tileMap[posY / 40][posX / 40].hasEnemy();
     }
-        public boolean isDoor(int posX, int posY){
-        return map.tileMap[posY/40][posX/40].isDoor();
+
+    /**
+     * checks if the tile is door
+     *
+     * @param posY position in y axle
+     * @param posX position in x axle
+     * @return returns true if tile is door
+     */
+    public boolean isDoor(int posX, int posY) {
+        return map.tileMap[posY / 40][posX / 40].isDoor();
     }
 }

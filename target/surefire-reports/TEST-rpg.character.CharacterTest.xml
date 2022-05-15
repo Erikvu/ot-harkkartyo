@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="9" failures="0" name="rpg.character.CharacterTest" time="0.004" errors="0" skipped="0">
+<testsuite tests="9" failures="0" name="rpg.character.CharacterTest" time="0.003" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="17.0.2+8-LTS-86"/>
@@ -63,7 +63,7 @@
   <testcase classname="rpg.character.CharacterTest" name="testPlayerDie" time="0.003"/>
   <testcase classname="rpg.character.CharacterTest" name="testHeal" time="0"/>
   <testcase classname="rpg.character.CharacterTest" name="testXPos" time="0"/>
-  <testcase classname="rpg.character.CharacterTest" name="testYPos" time="0.001"/>
+  <testcase classname="rpg.character.CharacterTest" name="testYPos" time="0"/>
   <testcase classname="rpg.character.CharacterTest" name="testSetLocation" time="0"/>
   <testcase classname="rpg.character.CharacterTest" name="testEnemyTakeDamage" time="0"/>
   <testcase classname="rpg.character.CharacterTest" name="testPlayerMove" time="0"/>

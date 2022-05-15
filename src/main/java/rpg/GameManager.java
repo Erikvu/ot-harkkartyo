@@ -33,16 +33,25 @@ public class GameManager implements Runnable {
     boolean enemyTurn = false;
     boolean stopUpdate = false;
 
+    /**
+     * constructor
+     */
     public GameManager() {
-        ui = new Ui(this);
+        ui = new Ui();
 
     }
 
+    /**
+     * starts gameloop thread
+     */
     public void startThread() {
         gameLoop = new Thread(this);
         gameLoop.start();
     }
 
+    /**
+     * basic gameloop calls update in spesific time intervalls
+     */
     @Override
     public void run() {
         graphics();
@@ -63,6 +72,13 @@ public class GameManager implements Runnable {
 
     }
 
+    /**
+     * Part of gameloop, decides what to do with userinput depending on what
+     * kind of screen is open
+     *
+     * @throws java.io.IOException
+     * @throws java.net.URISyntaxException
+     */
     public void update() throws IOException, URISyntaxException {
         if (!player.alive) {
             ui.battle.gameOver();
@@ -86,6 +102,9 @@ public class GameManager implements Runnable {
         }
     }
 
+    /**
+     * When menu is open sends update information to ui
+     */
     public void menuMove() {
         int arrowIndex = ui.mainMenu.arrowPos;
         if (ui.inputHander.down) {
@@ -118,6 +137,12 @@ public class GameManager implements Runnable {
         ui.mainMenu.updateUI();
     }
 
+    /**
+     * When map is open sends update information to ui
+     *
+     * @throws java.io.IOException
+     * @throws java.net.URISyntaxException
+     */
     public void mapMove() throws IOException, URISyntaxException {
         if (ui.inputHander.down) {
             if (playerCanMove(player.posY + 40, player.posX)) {
@@ -165,11 +190,14 @@ public class GameManager implements Runnable {
                 playerMoveToEnemy((player.posX + 40) / 40, player.posY / 40);
             }
         }
-        if (ui.inputHander.space) {
-        }
         ui.game.updateUI();
     }
 
+    /**
+     * When battlescreen is open sends update information to ui
+     *
+     * @throws java.io.IOException
+     */
     public void battleMove() throws IOException {
         int arrowIndex = ui.battle.arrowPos;
         if (ui.inputHander.down) {
@@ -192,6 +220,12 @@ public class GameManager implements Runnable {
         ui.battle.updateUI();
     }
 
+    /**
+     * In battle when there is enemy's turn this fuction decides at random what
+     * enemy will do and send update information to ui.
+     *
+     * @throws java.io.IOException
+     */
     public void battleEnemyAction() throws IOException {
         int rand = (int) (Math.random() * 20);
         if (rand > 15) {
@@ -208,30 +242,66 @@ public class GameManager implements Runnable {
     public void graphics() {
     }
 
+    /**
+     * checks if player can move to new position
+     *
+     * @param posX new player posion in x axle
+     * @param posY new player posion in y axle
+     * @return returns true if player can move in desired posioton
+     */
     public boolean playerCanMove(int posX, int posY) {
         return gameMap.passableTileInPoss(posX, posY);
     }
 
+    /**
+     * checks if the position contains enemy
+     *
+     * @param posX posion in x axle
+     * @param posY posion in y axle
+     * @return returns true if there is an enemy in position
+     */
     private boolean hasEnemy(int posX, int posY) {
         return gameMap.enemyTile(posX, posY);
     }
 
+    /**
+     * checks if the position contains door
+     *
+     * @param posX posion in x axle
+     * @param posY posion in y axle
+     * @return returns true if there is an door in position
+     */
     private boolean isDoor(int posX, int posY) {
         return gameMap.isDoor(posX, posY);
     }
 
+    /**
+     * moves player to new position and updates ui
+     *
+     * @param posX posion in x axle
+     * @param posY posion in y axle
+     */
     private void playerMove(int x, int y) {
         player.move(x, y);
         ui.game.updatePlayerPosition(player.posY, player.posX);
     }
 
-     void playerMoveToDoor() throws IOException, URISyntaxException {
+    /**
+     * moves player to door and loads a new map
+     */
+    void playerMoveToDoor() throws IOException, URISyntaxException {
         gameMap = new GameMap(secondMap);
         player.setPlayerPos(0, 40);
         ui.startGame(gameMap);
     }
 
-     void playerMoveToEnemy(int x, int y) {
+    /**
+     * moves player to enemy and starts battle
+     *
+     * @param posX posion in x axle
+     * @param posY posion in y axle
+     */
+    void playerMoveToEnemy(int x, int y) {
         ui.startBattle();
         ui.game.map.tileMap[x][y].enemyDefeated();
         battleEnemy = new Enemy();

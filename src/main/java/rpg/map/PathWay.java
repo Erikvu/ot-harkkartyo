@@ -8,7 +8,7 @@ package rpg.map;
  *
  * @author erikv
  */
-public class PathWay extends Tile{
+public class PathWay extends Tile {
 
     public boolean passable = true;
     public boolean hasPlayer = false;
@@ -16,8 +16,9 @@ public class PathWay extends Tile{
     public PathWay() {
 
     }
+
     @Override
-    public boolean isPassable(){
+    public boolean isPassable() {
         return this.passable;
     }
 }

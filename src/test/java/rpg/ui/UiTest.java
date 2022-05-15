@@ -30,7 +30,7 @@ public class UiTest {
 
     @Before
     public void setUp() {
-        ui = new Ui(new GameManager());
+        ui = new Ui();
     }
 
     @Test

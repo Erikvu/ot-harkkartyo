@@ -13,16 +13,18 @@ public class Door extends Tile {
     public boolean isDoor = true;
     public boolean hasPlayer = false;
     public boolean isPassable = true;
+
     public Door() {
 
     }
-    
+
     @Override
-        public boolean isDoor(){
+    public boolean isDoor() {
         return this.isDoor;
     }
+
     @Override
-        public boolean isPassable(){
+    public boolean isPassable() {
         return this.isPassable;
-}
+    }
 }

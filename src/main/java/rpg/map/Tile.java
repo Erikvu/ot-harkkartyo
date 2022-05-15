@@ -8,21 +8,24 @@ package rpg.map;
  *
  * @author erikv
  */
-public class Tile{
-    public boolean passable ; 
+public class Tile {
+
+    public boolean passable;
     public boolean hasEnemy;
     public boolean isDoor;
-  
-    public boolean isPassable(){
+
+    public boolean isPassable() {
         return this.passable;
     }
-        public boolean hasEnemy(){
+
+    public boolean hasEnemy() {
         return this.hasEnemy;
     }
-                public boolean isDoor(){
+
+    public boolean isDoor() {
         return this.isDoor;
     }
 
-    public void enemyDefeated() { 
+    public void enemyDefeated() {
     }
 }
