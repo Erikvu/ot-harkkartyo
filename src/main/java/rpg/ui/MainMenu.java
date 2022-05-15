@@ -9,9 +9,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import rpg.GameManager;
@@ -33,11 +31,11 @@ public class MainMenu extends JPanel {
     public MainMenu() {
         arrowPos = 0;
         try {
-            newGame = ImageIO.read((getClass().getClassLoader().getResource("resources/newGame.png")));
-            continueButton = ImageIO.read((getClass().getClassLoader().getResource("resources/Continue.png")));
-            quit = ImageIO.read((getClass().getClassLoader().getResource("resources/Quit.png")));
-            arrow1 = ImageIO.read((getClass().getClassLoader().getResource("resources/ArrowLeft.png")));
-            arrow = ImageIO.read((getClass().getClassLoader().getResource("resources/ArrowRight.png")));
+            newGame = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/newGame.png")));
+            continueButton = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/Continue.png")));
+            quit = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/Quit.png")));
+            arrow1 = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/ArrowLeft.png")));
+            arrow = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/ArrowRight.png")));
         } catch (IOException ex) {
             System.out.println(ex);
         }

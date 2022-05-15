@@ -32,12 +32,12 @@ public class battleScreen extends JPanel {
 
     private void loadItems() {
         try {
-            battleScreen = ImageIO.read((getClass().getClassLoader().getResource("resources/battleScreen.png")));
-            arrow1 = ImageIO.read((getClass().getClassLoader().getResource("resources/ArrowLeft.png")));
-            arrow = ImageIO.read((getClass().getClassLoader().getResource("resources/ArrowRight.png")));
-            heroHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt100.png")));
-            enemyHealtBar = ImageIO.read((getClass().getClassLoader().getResource("resources/healt100.png")));
-            action = ImageIO.read((getClass().getClassLoader().getResource("resources/placeholder.png")));
+            battleScreen = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/battleScreen.png")));
+            arrow1 = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/ArrowLeft.png")));
+            arrow = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/ArrowRight.png")));
+            heroHealtBar = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/healt100.png")));
+            enemyHealtBar = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/healt100.png")));
+            action = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/testi.png")));
         } catch (IOException ex) {
         }
 
@@ -190,9 +190,9 @@ public class battleScreen extends JPanel {
 
     public void showEnemyAction(int enemyAction) throws IOException {
         if (enemyAction == 1) {
-            action = ImageIO.read((getClass().getClassLoader().getResource("resources/attack.png")));
+            action = ImageIO.read((getClass().getClassLoader().getResource("resources/EnemyAttack.png")));
         } else {
-            action = ImageIO.read((getClass().getClassLoader().getResource("resources/heal.png")));
+            action = ImageIO.read((getClass().getClassLoader().getResource("resources/EnemyHeal.png")));
         }
     }
 }

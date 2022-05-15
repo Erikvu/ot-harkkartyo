@@ -15,7 +15,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import rpg.GameManager;
 import rpg.InputHandler;
-import rpg.map.Map;
+import rpg.map.Mmap;
 
 /**
  *
@@ -35,7 +35,7 @@ public class UiTest {
 
     @Test
     public void testStartGame() throws IOException, URISyntaxException {
-        ui.startGame(new GameMap(getClass().getClassLoader().getResource("resources/FirstMap.json")));
+        ui.startGame(new GameMap("resources/FirstMap.json"));
         assertEquals(true, ui.mapOn);
     }
 
@@ -44,27 +44,27 @@ public class UiTest {
      */
     @Test
     public void testStartBattle() throws IOException, URISyntaxException {
-        ui.startGame(new GameMap(getClass().getClassLoader().getResource("resources/FirstMap.json")));
+        ui.startGame(new GameMap("resources/FirstMap.json"));
         ui.startBattle();
         assertEquals(true, ui.battleOn);
     }
 
     @Test
     public void testEnemyHealt() throws IOException, URISyntaxException {
-        ui.startGame(new GameMap(getClass().getClassLoader().getResource("resources/FirstMap.json")));
+        ui.startGame(new GameMap("resources/FirstMap.json"));
         ui.startBattle();
         assertEquals("resources/healt10.png", ui.battle.changeEnemyHealth(10));
     }
 
     @Test
     public void testHeroHealt() throws IOException, URISyntaxException {
-        ui.startGame(new GameMap(getClass().getClassLoader().getResource("resources/FirstMap.json")));
+        ui.startGame(new GameMap("resources/FirstMap.json"));
         ui.startBattle();
         assertEquals("resources/healt00.png", ui.battle.changeHeroHealth(0));
     }
         @Test
     public void setBattleScreenArrowPoss() throws IOException, URISyntaxException {
-        ui.startGame(new GameMap(getClass().getClassLoader().getResource("resources/FirstMap.json")));
+        ui.startGame(new GameMap("resources/FirstMap.json"));
         ui.startBattle();
         ui.battle.setArrowPos(1);
         assertEquals(1, ui.battle.arrowPos);

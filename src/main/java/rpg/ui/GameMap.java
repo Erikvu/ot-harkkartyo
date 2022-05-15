@@ -13,9 +13,8 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import rpg.map.EnemyTile;
-import rpg.map.Map;
+import rpg.map.Mmap;
 import rpg.map.PathWay;
-import rpg.map.Tile;
 import rpg.map.Wall;
 
 /**
@@ -24,7 +23,7 @@ import rpg.map.Wall;
  */
 public class GameMap extends JPanel {
 
-    public Map map;
+    public Mmap map;
     private BufferedImage door;
     private BufferedImage wall;
     private BufferedImage pathWay;
@@ -33,11 +32,11 @@ public class GameMap extends JPanel {
     private int playerPosx;
     private int playerPosy;
 
-    public GameMap(URL url) throws IOException, URISyntaxException {
+    public GameMap(String url) throws IOException, URISyntaxException {
         loadItems();
         setOpaque(true);
         setBackground(Color.BLACK);
-        map = new Map(url);
+        map = new Mmap(url);
         map.makeMap();
         playerPosx = 40;
         playerPosy = 40;
@@ -45,11 +44,11 @@ public class GameMap extends JPanel {
 
     public void loadItems() {
         try {
-            door = ImageIO.read((getClass().getClassLoader().getResource("resources/door.png")));
-            wall = ImageIO.read((getClass().getClassLoader().getResource("resources/wall.png")));
-            pathWay = ImageIO.read((getClass().getClassLoader().getResource("resources/floor.png")));
-            player = ImageIO.read((getClass().getClassLoader().getResource("resources/hero.png")));
-            enemy = ImageIO.read((getClass().getClassLoader().getResource("resources/enemy.png")));
+            door = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/door.png")));
+            wall = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/wall.png")));
+            pathWay = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/floor.png")));
+            player = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/hero.png")));
+            enemy = ImageIO.read((this.getClass().getClassLoader().getResourceAsStream("resources/enemy.png")));
         } catch (IOException ex) {
             System.out.println(ex);
         }

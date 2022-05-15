@@ -14,7 +14,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import rpg.character.Enemy;
 import rpg.character.Player;
-import rpg.map.Map;
+import rpg.map.Mmap;
 import rpg.ui.GameMap;
 import rpg.ui.Ui;
 
@@ -47,11 +47,11 @@ public class GameManagerTest implements Runnable {
 
     @Test
     public void testGameOver() throws IOException, URISyntaxException {
-        gameManager.ui.startGame(new GameMap(getClass().getClassLoader().getResource("resources/FirstMap.json")));
+        gameManager.ui.startGame(new GameMap("resources/FirstMap.json"));
         gameManager.ui.startBattle();
         gameManager.player.takeDamage(9999);
         gameManager.update();
-        assertEquals(1, gameManager.ui.battle.enemyHealtBar.getHeight());
+        assertEquals(5, gameManager.ui.battle.enemyHealtBar.getHeight());
     }
 
     @Test
@@ -62,19 +62,10 @@ public class GameManagerTest implements Runnable {
 
     @Test
     public void testMoveToEnemy() throws IOException, URISyntaxException {
-        gameManager.ui.startGame(new GameMap(getClass().getClassLoader().getResource("resources/FirstMap.json")));
+        gameManager.ui.startGame(new GameMap("resources/FirstMap.json"));
         gameManager.ui.startBattle();
         gameManager.playerMoveToEnemy(6, 7);
         assertEquals(false, gameManager.ui.game.map.tileMap[6][7].hasEnemy);
-    }
-
-    @Test
-    public void testEnemyTurn() throws IOException, URISyntaxException {
-        gameManager.enemyTurn = true;
-        gameManager.ui.startGame(new GameMap(getClass().getClassLoader().getResource("resources/FirstMap.json")));
-        gameManager.ui.startBattle();
-        gameManager.update();
-        assertEquals(false, gameManager.enemyTurn);
     }
 
     @Override

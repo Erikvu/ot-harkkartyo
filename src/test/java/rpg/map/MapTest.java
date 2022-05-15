@@ -18,13 +18,13 @@ import static org.junit.Assert.*;
  * @author erikv
  */
 public class MapTest {
-    Map map;
+    Mmap map;
     public MapTest() {
     }
     
     @Before
     public void setUp() throws IOException, URISyntaxException {
-       map = new Map(getClass().getClassLoader().getResource("resources/FirstMap.json"));
+       map = new Mmap("resources/FirstMap.json");
     }
     
     /**

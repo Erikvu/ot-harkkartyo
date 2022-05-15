@@ -27,9 +27,8 @@ public class GameManager implements Runnable {
     Ui ui;
     Player player = new Player("Asd", 100, 100, 5, 5, 20, 40, 40);
     private Enemy battleEnemy = new Enemy();
-    public GameMap game;
-    String firstMap = "resources/FirstMap.json";
-    String secondMap = "resources/SecondMap.json";
+    String firstMap = "resources/FirstMap.txt";
+    String secondMap = "resources/SecondMap.txt";
     GameMap gameMap;
     boolean enemyTurn = false;
     boolean stopUpdate = false;
@@ -99,7 +98,7 @@ public class GameManager implements Runnable {
             if (arrowIndex == 0) {
                 try {
                     ui.menuOn = false;
-                    gameMap = new GameMap(getClass().getClassLoader().getResource(firstMap));
+                    gameMap = new GameMap(firstMap);
                     ui.startGame(gameMap);
                 } catch (IOException | URISyntaxException ex) {
                 }
@@ -107,7 +106,7 @@ public class GameManager implements Runnable {
             if (arrowIndex == 1) {
                 try {
                     ui.menuOn = false;
-                    gameMap = new GameMap(getClass().getClassLoader().getResource(firstMap));
+                    gameMap = new GameMap(firstMap);
                     ui.startGame(gameMap);
                 } catch (IOException | URISyntaxException ex) {
                 }
@@ -227,13 +226,12 @@ public class GameManager implements Runnable {
     }
 
      void playerMoveToDoor() throws IOException, URISyntaxException {
-        gameMap = new GameMap(getClass().getClassLoader().getResource(secondMap));
+        gameMap = new GameMap(secondMap);
         player.setPlayerPos(0, 40);
         ui.startGame(gameMap);
     }
 
      void playerMoveToEnemy(int x, int y) {
-        System.out.println(x + " " +y);
         ui.startBattle();
         ui.game.map.tileMap[x][y].enemyDefeated();
         battleEnemy = new Enemy();

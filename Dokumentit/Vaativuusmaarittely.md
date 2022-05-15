@@ -9,14 +9,13 @@ Sovelluksen tarkoitus on tehdä yksinkertainen ylhäältäpäin kuvattu rpg-peli
 ### Päävalikko
 
 - Voidaan valita jatka peliä, aloita uusi peli tai lopeta
-    -Jos ei ole peliä mitä jatkaa "jatka peli" nappulaa ei ole/tai se näkyy selvästi että sitä ei voi painaa
 
 ### pelissä liikkumminen
 
 - hahmo voi liikkua alueella
-- hahmo voi kerätä tavaroita
 - hahmo voi aloittaa taistelun vieressä olevan vihollisen kanssa.
-
+- kun hahmo menee ovella latautuu uusi alue.
+- pelissä on seiniä jonka läpi ei voi kulkea.
 
 ### taistelu
 - Vuoropohjainen taistelu
@@ -24,16 +23,9 @@ Sovelluksen tarkoitus on tehdä yksinkertainen ylhäältäpäin kuvattu rpg-peli
         - pelaaja voi valita käyttääkö parantavaa juomaa vai hyökkääkö
         - vihollinen menettää elämää tai pelaaja paranee
     - vihollisen vuoro
-        - vihollinen arpoo kahdesta eri vahvuisesta hyökkäyksesta
+        - vihollinen arpoo paranataako itseään vai vahingoittaako pelaaja
         - pelaaja menettää elämää
 
 - vihollisen elämäpisteet vähenee nollaan: Taistelu päättyy ja vihollinen katoaa
 - vihollisen elämäpisteet vähenee nollaan: pelipäättyy ja tallennuskatoaa
-## Jatkokehitysideoita
-
-Perusversiota voi täydentää ajan salliessa
-
-- Lisää vihollisia
-- jonkinlainen pistesysteemi
-- tavara valikko näkymä
 
