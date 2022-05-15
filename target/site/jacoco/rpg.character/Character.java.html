@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fi"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Character.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">rpg</a> &gt; <a href="index.source.html" class="el_package">rpg.character</a> &gt; <span class="el_source">Character.java</span></div><h1>Character.java</h1><pre class="source lang-java linenums">/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package rpg.character;
+
+/**
+ *
+ * @author erikv
+ */
+public class Character {
+
+    protected String name;
+    public int health;
+    protected int maxHealth;
+    public int energy;
+    protected int maxEnergy;
+    public int attack;
+    public boolean alive;
+    public int posX;
+    public int posY;
+
+<span class="fc" id="L23">    public Character(String name, int health, int maxHealth, int energy, int maxEnergy, int attack, int posX, int posY) {</span>
+<span class="fc" id="L24">        this.name = name;</span>
+<span class="fc" id="L25">        this.health = health;</span>
+<span class="fc" id="L26">        this.maxHealth = maxHealth;</span>
+<span class="fc" id="L27">        this.energy = energy;</span>
+<span class="fc" id="L28">        this.maxEnergy = maxEnergy;</span>
+<span class="fc" id="L29">        this.attack = attack;</span>
+<span class="fc" id="L30">        this.alive = true;</span>
+<span class="fc" id="L31">        this.posX = posX;</span>
+<span class="fc" id="L32">        this.posY = posY;</span>
+<span class="fc" id="L33">    }</span>
+
+    public int takeDamage(int damage) {
+<span class="fc" id="L36">        health -= damage;</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">        if (health &lt;= 0) {</span>
+<span class="nc" id="L38">            alive = false;</span>
+        }
+<span class="fc" id="L40">        return health;</span>
+    }
+
+    public int heal() {
+<span class="fc" id="L44">        health += 20;</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if (health &gt;= maxHealth) {</span>
+<span class="fc" id="L46">            health = maxHealth;</span>
+        }
+<span class="fc" id="L48">        return health;</span>
+    }
+
+    public int xPos() {
+<span class="fc" id="L52">        return posX;</span>
+    }
+
+    public int yPos() {
+<span class="fc" id="L56">        return posY;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

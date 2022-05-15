@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fi"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">rpg</a> &gt; <a href="index.source.html" class="el_package">rpg</a> &gt; <span class="el_source">GameManager.java</span></div><h1>GameManager.java</h1><pre class="source lang-java linenums">/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package rpg;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import rpg.character.Enemy;
+import rpg.character.Player;
+import rpg.ui.GameMap;
+import rpg.ui.Ui;
+
+/**
+ * @author erikv
+ */
+public class GameManager implements Runnable {
+
+    Thread gameLoop;
+    private long currentTime;
+    private double gameTime;
+<span class="fc" id="L24">    private final double timeInterval = 1000000000 / 10.0;</span>
+<span class="fc" id="L25">    private long lastLoopTime = System.nanoTime();</span>
+    Ui ui;
+<span class="fc" id="L27">    Player player = new Player(&quot;Asd&quot;, 100, 100, 5, 5, 20, 40, 40);</span>
+<span class="fc" id="L28">    private Enemy battleEnemy = new Enemy();</span>
+<span class="fc" id="L29">    String firstMap = &quot;resources/FirstMap.txt&quot;;</span>
+<span class="fc" id="L30">    String secondMap = &quot;resources/SecondMap.txt&quot;;</span>
+    GameMap gameMap;
+<span class="fc" id="L32">    boolean enemyTurn = false;</span>
+<span class="fc" id="L33">    boolean stopUpdate = false;</span>
+
+    /**
+     * Constructor.
+     */
+<span class="fc" id="L38">    public GameManager() {</span>
+<span class="fc" id="L39">        ui = new Ui();</span>
+
+<span class="fc" id="L41">    }</span>
+
+    /**
+     * starts gameloop thread.
+     */
+    public void startThread() {
+<span class="fc" id="L47">        gameLoop = new Thread(this);</span>
+<span class="fc" id="L48">        gameLoop.start();</span>
+<span class="fc" id="L49">    }</span>
+
+    /**
+     * basic gameloop calls update in spesific time intervalls.
+     */
+    @Override
+    public void run() {
+<span class="fc" id="L56">        graphics();</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">        while (gameLoop != null) {</span>
+<span class="fc" id="L58">            currentTime = System.nanoTime();</span>
+<span class="fc" id="L59">            gameTime += (currentTime - lastLoopTime) / timeInterval;</span>
+<span class="fc" id="L60">            lastLoopTime = currentTime;</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">            while (gameTime &gt;= 1) {</span>
+                try {
+<span class="fc" id="L63">                    update();</span>
+<span class="nc" id="L64">                } catch (IOException | URISyntaxException ex) {</span>
+<span class="nc" id="L65">                    Logger.getLogger(GameManager.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="fc" id="L66">                }</span>
+<span class="fc" id="L67">                gameTime--;</span>
+            }
+
+        }
+
+<span class="nc" id="L72">    }</span>
+
+    /**
+     * Part of gameloop, decides what to do with userinput depending on what
+     * kind of screen is open.
+     *
+     * @throws java.io.IOException
+     * @throws java.net.URISyntaxException
+     */
+    public void update() throws IOException, URISyntaxException {
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        if (!player.alive) {</span>
+<span class="fc" id="L83">            ui.battle.gameOver();</span>
+<span class="fc" id="L84">            ui.battle.updateUI();</span>
+<span class="fc" id="L85">            return;</span>
+        }
+<span class="pc bpc" id="L87" title="1 of 2 branches missed.">        if (ui.menuOn) {</span>
+<span class="fc" id="L88">            menuMove();</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        } else if (ui.mapOn) {</span>
+<span class="nc" id="L90">            mapMove();</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">        } else if (ui.battleOn) {</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">            if (!battleEnemy.alive) {</span>
+<span class="nc" id="L93">                ui.startGame(gameMap);</span>
+            } else {
+<span class="nc bnc" id="L95" title="All 2 branches missed.">                if (!enemyTurn) {</span>
+<span class="nc" id="L96">                    battleMove();</span>
+                } else {
+<span class="nc" id="L98">                    battleEnemyAction();</span>
+                }
+            }
+        }
+<span class="fc" id="L102">    }</span>
+
+    /**
+     * When menu is open sends update information to ui.
+     */
+    public void menuMove() {
+<span class="fc" id="L108">        int arrowIndex = ui.mainMenu.arrowPos;</span>
+<span class="pc bpc" id="L109" title="1 of 2 branches missed.">        if (ui.inputHander.down) {</span>
+<span class="nc" id="L110">            ui.mainMenu.setArrowPos(arrowIndex + 1);</span>
+        }
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">        if (ui.inputHander.up) {</span>
+<span class="nc" id="L113">            ui.mainMenu.setArrowPos(arrowIndex - 1);</span>
+        }
+<span class="pc bpc" id="L115" title="1 of 2 branches missed.">        if (ui.inputHander.space) {</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            if (arrowIndex == 0) {</span>
+                try {
+<span class="nc" id="L118">                    ui.menuOn = false;</span>
+<span class="nc" id="L119">                    gameMap = new GameMap(firstMap);</span>
+<span class="nc" id="L120">                    ui.startGame(gameMap);</span>
+<span class="nc" id="L121">                } catch (IOException | URISyntaxException ex) {</span>
+<span class="nc" id="L122">                }</span>
+            }
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            if (arrowIndex == 1) {</span>
+                try {
+<span class="nc" id="L126">                    ui.menuOn = false;</span>
+<span class="nc" id="L127">                    gameMap = new GameMap(firstMap);</span>
+<span class="nc" id="L128">                    ui.startGame(gameMap);</span>
+<span class="nc" id="L129">                } catch (IOException | URISyntaxException ex) {</span>
+<span class="nc" id="L130">                }</span>
+            }
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            if (arrowIndex == 2) {</span>
+<span class="nc" id="L133">                System.exit(0);</span>
+            }
+        }
+<span class="fc" id="L136">        ui.mainMenu.updateUI();</span>
+<span class="fc" id="L137">    }</span>
+
+    /**
+     * When map is open sends update information to ui.
+     *
+     * @throws java.io.IOException
+     * @throws java.net.URISyntaxException
+     */
+    public void mapMove() throws IOException, URISyntaxException {
+<span class="nc bnc" id="L146" title="All 2 branches missed.">        if (ui.inputHander.down) {</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            if (playerCanMove(player.posY + 40, player.posX)) {</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">                if (isDoor(player.posY + 40, player.posX)) {</span>
+<span class="nc" id="L149">                    playerMoveToDoor();</span>
+                }
+<span class="nc" id="L151">                playerMove(0, 40);</span>
+            }
+<span class="nc bnc" id="L153" title="All 2 branches missed.">            if (hasEnemy(player.posY + 40, player.posX)) {</span>
+<span class="nc" id="L154">                playerMoveToEnemy(player.posX / 40, (player.posY + 40) / 40);</span>
+
+            }
+        }
+<span class="nc bnc" id="L158" title="All 2 branches missed.">        if (ui.inputHander.up) {</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            if (playerCanMove(player.posY - 40, player.posX)) {</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">                if (isDoor(player.posY - 40, player.posX)) {</span>
+<span class="nc" id="L161">                    playerMoveToDoor();</span>
+                }
+<span class="nc" id="L163">                playerMove(0, -40);</span>
+            }
+<span class="nc bnc" id="L165" title="All 2 branches missed.">            if (hasEnemy(player.posY - 40, player.posX)) {</span>
+<span class="nc" id="L166">                playerMoveToEnemy(player.posX / 40, (player.posY - 40) / 40);</span>
+            }
+        }
+<span class="nc bnc" id="L169" title="All 2 branches missed.">        if (ui.inputHander.left) {</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">            if (playerCanMove(player.posY, player.posX - 40)) {</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">                if (isDoor(player.posY, player.posX - 40)) {</span>
+<span class="nc" id="L172">                    playerMoveToDoor();</span>
+                }
+<span class="nc" id="L174">                playerMove(-40, 0);</span>
+            }
+<span class="nc bnc" id="L176" title="All 2 branches missed.">            if (hasEnemy(player.posY, player.posX - 40)) {</span>
+<span class="nc" id="L177">                playerMoveToEnemy((player.posX - 40) / 40, player.posY / 40);</span>
+            }
+        }
+<span class="nc bnc" id="L180" title="All 2 branches missed.">        if (ui.inputHander.right) {</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            if (playerCanMove(player.posY, player.posX + 40)) {</span>
+<span class="nc bnc" id="L182" title="All 2 branches missed.">                if (isDoor(player.posY, player.posX + 40)) {</span>
+<span class="nc" id="L183">                    playerMoveToDoor();</span>
+                }
+
+<span class="nc" id="L186">                playerMove(40, 0);</span>
+            }
+<span class="nc bnc" id="L188" title="All 2 branches missed.">            if (hasEnemy(player.posY, player.posX + 40)) {</span>
+<span class="nc" id="L189">                playerMoveToEnemy((player.posX + 40) / 40, player.posY / 40);</span>
+            }
+        }
+<span class="nc" id="L192">        ui.game.updateUI();</span>
+<span class="nc" id="L193">    }</span>
+
+    /**
+     * When battlescreen is open sends update information to ui.
+     *
+     * @throws java.io.IOException
+     */
+    public void battleMove() throws IOException {
+<span class="nc" id="L201">        int arrowIndex = ui.battle.arrowPos;</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">        if (ui.inputHander.down) {</span>
+<span class="nc" id="L203">            ui.battle.setArrowPos(arrowIndex + 1);</span>
+        }
+<span class="nc bnc" id="L205" title="All 2 branches missed.">        if (ui.inputHander.up) {</span>
+<span class="nc" id="L206">            ui.battle.setArrowPos(arrowIndex - 1);</span>
+        }
+<span class="nc bnc" id="L208" title="All 2 branches missed.">        if (ui.inputHander.space) {</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            if (arrowIndex == 0) {</span>
+<span class="nc" id="L210">                ui.battle.changeEnemyHealth(battleEnemy.takeDamage(player.attack));</span>
+<span class="nc" id="L211">                enemyTurn = true;</span>
+            }
+<span class="nc bnc" id="L213" title="All 2 branches missed.">            if (arrowIndex == 1) {</span>
+<span class="nc" id="L214">                enemyTurn = true;</span>
+<span class="nc" id="L215">                ui.battle.changeHeroHealth(player.heal());</span>
+            }
+        }
+
+<span class="nc" id="L219">        ui.battle.updateUI();</span>
+<span class="nc" id="L220">    }</span>
+
+    /**
+     * In battle when there is enemy's turn this fuction decides at random what
+     * enemy will do and send update information to ui.
+     *
+     * @throws java.io.IOException
+     */
+    public void battleEnemyAction() throws IOException {
+<span class="nc" id="L229">        int rand = (int) (Math.random() * 20);</span>
+<span class="nc bnc" id="L230" title="All 2 branches missed.">        if (rand &gt; 15) {</span>
+<span class="nc" id="L231">            ui.battle.changeEnemyHealth(battleEnemy.heal());</span>
+<span class="nc" id="L232">            ui.battle.showEnemyAction(0);</span>
+        } else {
+<span class="nc" id="L234">            ui.battle.changeHeroHealth(player.takeDamage(10));</span>
+<span class="nc" id="L235">            ui.battle.showEnemyAction(1);</span>
+        }
+<span class="nc" id="L237">        enemyTurn = false;</span>
+<span class="nc" id="L238">        ui.battle.updateUI();</span>
+<span class="nc" id="L239">    }</span>
+
+    public void graphics() {
+<span class="fc" id="L242">    }</span>
+
+    /**
+     * checks if player can move to new position.
+     *
+     * @param posX new player posion in x axle
+     * @param posY new player posion in y axle
+     * @return returns true if player can move in desired posioton
+     */
+    public boolean playerCanMove(int posX, int posY) {
+<span class="nc" id="L252">        return gameMap.passableTileInPoss(posX, posY);</span>
+    }
+
+    /**
+     * checks if the position contains enemy
+     *
+     * @param posX posion in x axle
+     * @param posY posion in y axle
+     * @return returns true if there is an enemy in position
+     */
+    private boolean hasEnemy(int posX, int posY) {
+<span class="nc" id="L263">        return gameMap.enemyTile(posX, posY);</span>
+    }
+
+    /**
+     * checks if the position contains door
+     *
+     * @param posX posion in x axle
+     * @param posY posion in y axle
+     * @return returns true if there is an door in position
+     */
+    private boolean isDoor(int posX, int posY) {
+<span class="nc" id="L274">        return gameMap.isDoor(posX, posY);</span>
+    }
+
+    /**
+     * moves player to new position and updates ui
+     *
+     * @param posX posion in x axle
+     * @param posY posion in y axle
+     */
+    private void playerMove(int x, int y) {
+<span class="nc" id="L284">        player.move(x, y);</span>
+<span class="nc" id="L285">        ui.game.updatePlayerPosition(player.posY, player.posX);</span>
+<span class="nc" id="L286">    }</span>
+
+    /**
+     * moves player to door and loads a new map
+     */
+    void playerMoveToDoor() throws IOException, URISyntaxException {
+<span class="fc" id="L292">        gameMap = new GameMap(secondMap);</span>
+<span class="fc" id="L293">        player.setPlayerPos(0, 40);</span>
+<span class="fc" id="L294">        ui.startGame(gameMap);</span>
+<span class="fc" id="L295">    }</span>
+
+    /**
+     * moves player to enemy and starts battle
+     *
+     * @param posX posion in x axle
+     * @param posY posion in y axle
+     */
+    void playerMoveToEnemy(int x, int y) {
+<span class="fc" id="L304">        ui.startBattle();</span>
+<span class="fc" id="L305">        ui.game.map.tileMap[x][y].enemyDefeated();</span>
+<span class="fc" id="L306">        battleEnemy = new Enemy();</span>
+<span class="fc" id="L307">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

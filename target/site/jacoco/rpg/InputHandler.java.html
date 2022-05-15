@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fi"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InputHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">rpg</a> &gt; <a href="index.source.html" class="el_package">rpg</a> &gt; <span class="el_source">InputHandler.java</span></div><h1>InputHandler.java</h1><pre class="source lang-java linenums">
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package rpg;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+/**
+ *
+ * @author erikv
+ */
+<span class="fc" id="L15">public class InputHandler implements KeyListener {</span>
+
+    public boolean up, left, right, down, space;
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+<span class="nc" id="L21">    }</span>
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+<span class="nc" id="L25">        int keyPressed = e.getKeyCode();</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (keyPressed == KeyEvent.VK_UP) {</span>
+<span class="nc" id="L27">            up = true;</span>
+        }
+<span class="nc bnc" id="L29" title="All 2 branches missed.">        if (keyPressed == KeyEvent.VK_DOWN) {</span>
+<span class="nc" id="L30">            down = true;</span>
+        }
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        if (keyPressed == KeyEvent.VK_LEFT) {</span>
+<span class="nc" id="L33">            left = true;</span>
+        }
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (keyPressed == KeyEvent.VK_RIGHT) {</span>
+<span class="nc" id="L36">            right = true;</span>
+        }
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (keyPressed == KeyEvent.VK_SPACE) {</span>
+<span class="nc" id="L39">            space = true;</span>
+        }
+<span class="nc" id="L41">    }</span>
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+<span class="nc" id="L45">        int keyPressed = e.getKeyCode();</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        if (keyPressed == KeyEvent.VK_UP) {</span>
+<span class="nc" id="L47">            up = false;</span>
+        }
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        if (keyPressed == KeyEvent.VK_DOWN) {</span>
+<span class="nc" id="L50">            down = false;</span>
+        }
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (keyPressed == KeyEvent.VK_LEFT) {</span>
+<span class="nc" id="L53">            left = false;</span>
+        }
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        if (keyPressed == KeyEvent.VK_RIGHT) {</span>
+<span class="nc" id="L56">            right = false;</span>
+        }
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (keyPressed == KeyEvent.VK_SPACE) {</span>
+<span class="nc" id="L59">            space = false;</span>
+        }
+<span class="nc" id="L61">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

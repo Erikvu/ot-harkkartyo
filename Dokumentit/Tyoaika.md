@@ -16,7 +16,8 @@
 | 7.5. | 3  | Unit collionsion|
 | 8.5. | 2  | added BattleScreen|
 | 10.5. | 5  | sekalaista koodailua|
-| 14.5. | 3  | refactoring|
-| 15.5. | 8  | Added more jUnitTest and documentation|
-Kokonaisaika: 48h
+| 13.5. | 3  | refactoring|
+| 14.5. | 8  | Added more jUnitTest and documentation|
+| 14.5. | 11  | Viimeistelyä|
+Kokonaisaika: 59h
 

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fi"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Mmap.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">rpg</a> &gt; <a href="index.source.html" class="el_package">rpg.map</a> &gt; <span class="el_source">Mmap.java</span></div><h1>Mmap.java</h1><pre class="source lang-java linenums">/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package rpg.map;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import java.net.URISyntaxException;
+
+/**
+ *
+ * @author erikv
+ */
+public class Mmap {
+
+<span class="fc" id="L20">    public Tile[][] tileMap = new Tile[30][20];</span>
+    public String mapPath;
+
+    /**
+     * Constructor
+     *
+     * @param url path to .txt file that makes tilemap
+     * @throws java.io.IOException
+     * @throws java.net.URISyntaxException
+     */
+<span class="fc" id="L30">    public Mmap(String url) throws IOException, URISyntaxException {</span>
+<span class="fc" id="L31">        this.mapPath = url;</span>
+<span class="fc" id="L32">    }</span>
+
+    /**
+     * makes a new tilemap from txt file.
+     *
+     * @return returns tilemap
+     * @throws java.io.IOException
+     * @throws java.net.URISyntaxException
+     */
+    public Tile[][] makeMap() throws IOException, URISyntaxException {
+<span class="fc" id="L42">        int columnIndex = 0;</span>
+<span class="fc" id="L43">        String line = &quot; &quot;;</span>
+        String[] temp;
+<span class="fc" id="L45">        InputStream in = this.getClass().getClassLoader()</span>
+<span class="fc" id="L46">                .getResourceAsStream(mapPath);</span>
+<span class="fc" id="L47">        try ( BufferedReader fileReader = new BufferedReader(new InputStreamReader(in))) {</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">            while ((line = fileReader.readLine()) != null) {</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">                for (int i = 0; i &lt; 30; i++) {</span>
+<span class="fc" id="L50">                    tileMap[i][columnIndex] = charToTile(line.charAt(i));</span>
+                }
+<span class="fc" id="L52">                columnIndex++;</span>
+            }
+        }
+<span class="fc" id="L55">        return tileMap;</span>
+    }
+
+    /**
+     * moves player to new position and updates ui
+     *
+     * @param character character to make tile
+     * @return returns tile based on character that is given in parameters
+     */
+    Tile charToTile(char character) {
+        Tile tile;
+<span class="fc bfc" id="L66" title="All 4 branches covered.">        switch (character) {</span>
+            case 'd':
+<span class="fc" id="L68">                tile = new Door();</span>
+<span class="fc" id="L69">                break;</span>
+            case 'w':
+<span class="fc" id="L71">                tile = new PathWay();</span>
+<span class="fc" id="L72">                break;</span>
+            case 'e':
+<span class="fc" id="L74">                EnemyTile enemyTile = new EnemyTile();</span>
+<span class="fc" id="L75">                enemyTile.hasEnemy = true;</span>
+<span class="fc" id="L76">                tile = enemyTile;</span>
+
+<span class="fc" id="L78">                break;</span>
+            default:
+<span class="fc" id="L80">                tile = new Wall();</span>
+                break;
+        }
+<span class="fc" id="L83">        return tile;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
