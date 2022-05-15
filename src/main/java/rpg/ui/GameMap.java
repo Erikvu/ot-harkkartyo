@@ -33,7 +33,7 @@ public class GameMap extends JPanel {
     private int playerPosy;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param url gets path to txt file that makes the map
      * @throws java.io.IOException
@@ -50,7 +50,7 @@ public class GameMap extends JPanel {
     }
 
     /**
-     * Loads images to generate new map
+     * Loads images to generate new map.
      */
     public void loadItems() {
         try {
@@ -72,7 +72,7 @@ public class GameMap extends JPanel {
     }
 
     /**
-     * Draws gamemap based on the tilemap
+     * Draws gamemap based on the tilemap.
      *
      * @param g Graphics parameter
      */
@@ -103,7 +103,7 @@ public class GameMap extends JPanel {
     }
 
     /**
-     * Updates player position on map
+     * Updates player position on map.
      *
      * @param posY position in y axle
      * @param posX position in x axle
@@ -114,7 +114,7 @@ public class GameMap extends JPanel {
     }
 
     /**
-     * checks if the tile is passable
+     * checks if the tile is passable.
      *
      * @param posY position in y axle
      * @param posX position in x axle
@@ -125,7 +125,7 @@ public class GameMap extends JPanel {
     }
 
     /**
-     * checks if the tile has enemy
+     * checks if the tile has enemy.
      *
      * @param posY position in y axle
      * @param posX position in x axle
@@ -136,7 +136,7 @@ public class GameMap extends JPanel {
     }
 
     /**
-     * checks if the tile is door
+     * checks if the tile is door.
      *
      * @param posY position in y axle
      * @param posX position in x axle

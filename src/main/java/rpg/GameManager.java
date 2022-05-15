@@ -14,7 +14,6 @@ import rpg.ui.GameMap;
 import rpg.ui.Ui;
 
 /**
- *
  * @author erikv
  */
 public class GameManager implements Runnable {
@@ -34,7 +33,7 @@ public class GameManager implements Runnable {
     boolean stopUpdate = false;
 
     /**
-     * constructor
+     * Constructor.
      */
     public GameManager() {
         ui = new Ui();
@@ -42,7 +41,7 @@ public class GameManager implements Runnable {
     }
 
     /**
-     * starts gameloop thread
+     * starts gameloop thread.
      */
     public void startThread() {
         gameLoop = new Thread(this);
@@ -50,7 +49,7 @@ public class GameManager implements Runnable {
     }
 
     /**
-     * basic gameloop calls update in spesific time intervalls
+     * basic gameloop calls update in spesific time intervalls.
      */
     @Override
     public void run() {
@@ -74,7 +73,7 @@ public class GameManager implements Runnable {
 
     /**
      * Part of gameloop, decides what to do with userinput depending on what
-     * kind of screen is open
+     * kind of screen is open.
      *
      * @throws java.io.IOException
      * @throws java.net.URISyntaxException
@@ -103,7 +102,7 @@ public class GameManager implements Runnable {
     }
 
     /**
-     * When menu is open sends update information to ui
+     * When menu is open sends update information to ui.
      */
     public void menuMove() {
         int arrowIndex = ui.mainMenu.arrowPos;
@@ -138,7 +137,7 @@ public class GameManager implements Runnable {
     }
 
     /**
-     * When map is open sends update information to ui
+     * When map is open sends update information to ui.
      *
      * @throws java.io.IOException
      * @throws java.net.URISyntaxException
@@ -194,7 +193,7 @@ public class GameManager implements Runnable {
     }
 
     /**
-     * When battlescreen is open sends update information to ui
+     * When battlescreen is open sends update information to ui.
      *
      * @throws java.io.IOException
      */
@@ -243,7 +242,7 @@ public class GameManager implements Runnable {
     }
 
     /**
-     * checks if player can move to new position
+     * checks if player can move to new position.
      *
      * @param posX new player posion in x axle
      * @param posY new player posion in y axle

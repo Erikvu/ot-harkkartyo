@@ -21,7 +21,7 @@ public class Ui extends JFrame {
     public battleScreen battle;
 
     /**
-     * constructor
+     * constructor.
      *
      */
     public Ui() {
@@ -35,7 +35,7 @@ public class Ui extends JFrame {
     }
 
     /**
-     * Makes ui and starts with mainMenu
+     * Makes ui and starts with mainMenu.
      */
     private void init() {
         this.setSize(1215, 835);
@@ -45,7 +45,7 @@ public class Ui extends JFrame {
     }
 
     /**
-     * Starts game and shows a map
+     * Starts game and shows a map.
      *
      * @param map map to be drawn
      */
@@ -60,7 +60,7 @@ public class Ui extends JFrame {
     }
 
     /**
-     * Starts battle and shows battlescreen
+     * Starts battle and shows battlescreen.
      */
     public void startBattle() {
         mapOn = false;

@@ -27,14 +27,14 @@ public class battleScreen extends JPanel {
     public int enemyHealt = 100;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public battleScreen() {
         loadItems();
     }
 
     /**
-     * Loads images to generate new battlescreen
+     * Loads images to generate new battlescreen.
      */
     private void loadItems() {
         try {
@@ -59,7 +59,7 @@ public class battleScreen extends JPanel {
     }
 
     /**
-     * Draws battlescreen
+     * Draws battlescreen.
      *
      * @param g
      */
@@ -69,7 +69,7 @@ public class battleScreen extends JPanel {
     }
 
     /**
-     * Draws arrow to show player action position
+     * Draws arrow to show player action position.
      *
      * @param g
      */
@@ -79,7 +79,7 @@ public class battleScreen extends JPanel {
     }
 
     /**
-     * Draws enemys and players healthbar
+     * Draws enemys and players healthbar.
      *
      * @param g
      */
@@ -89,7 +89,7 @@ public class battleScreen extends JPanel {
     }
 
     /**
-     * sets player action arrow position
+     * sets player action arrow position.
      *
      * @param pos new arrow position
      */
@@ -100,7 +100,7 @@ public class battleScreen extends JPanel {
     }
 
     /**
-     * Shows gameover screen and hides other components
+     * Shows gameover screen and hides other components.
      *
      * @throws java.io.IOException
      */
@@ -114,7 +114,7 @@ public class battleScreen extends JPanel {
     }
 
     /**
-     * Changes players health to new health
+     * Changes players health to new health.
      *
      * @param newHealth new health
      * @return returns new health
@@ -174,7 +174,7 @@ public class battleScreen extends JPanel {
     }
 
     /**
-     * Changes enemys health to new health
+     * Changes enemys health to new health.
      *
      * @param newHealth new health
      * @return returns new health
@@ -234,7 +234,7 @@ public class battleScreen extends JPanel {
     }
 
     /**
-     * Shows enemys action in combat
+     * Shows enemys action in combat.
      *
      * @param enemyAction
      * @throws java.io.IOException

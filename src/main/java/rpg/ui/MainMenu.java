@@ -26,7 +26,7 @@ public class MainMenu extends JPanel {
     public int arrowPos;
 
     /**
-     * Constructor that loads images to generate menuscreen
+     * Constructor that loads images to generate menuscreen.
      */
     public MainMenu() {
         arrowPos = 0;
@@ -51,7 +51,7 @@ public class MainMenu extends JPanel {
     }
 
     /**
-     * Drawns menu
+     * Drawns menu.
      */
     public void drawMainMenu(Graphics g) {
         g.drawImage(continueButton, 500, 300, this);
@@ -61,7 +61,7 @@ public class MainMenu extends JPanel {
     }
 
     /**
-     * Drawns selection arrows
+     * Drawns selection arrows.
      */
     private void drawArrows(Graphics g) {
         g.drawImage(arrow, 450, arrowLocation[arrowPos], this);
@@ -69,7 +69,7 @@ public class MainMenu extends JPanel {
     }
 
     /**
-     * updates arrowposition
+     * updates arrowposition.
      *
      * @param pos new arrow position
      */
